@@ -19,51 +19,54 @@
 
     <Button
         android:id="@+id/toInputMealScreenButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
         android:text="Input Meal"
-        android:textSize="sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/toRecipeScreenButton"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/toRecipeScreenButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
         android:text="Recipe"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/toInputMealScreenButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toInputMealScreenButton"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"/>
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/toIngredientScreenButton"
+        app:layout_constraintStart_toEndOf="@+id/toInputMealScreenButton" />
 
     <Button
         android:id="@+id/toIngredientScreenButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingredient"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="8sp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toEndOf="@+id/toRecipeScreenButton"
         app:layout_constraintEnd_toStartOf="@+id/toShoppingListScreenButton"
-        app:layout_constraintTop_toBottomOf="@+id/toInputMealScreenButton"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <Button
         android:id="@+id/toShoppingListScreenButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shopping List"
-        android:textSize="14sp"
+        android:textSize="8sp"
         app:layout_constraintStart_toEndOf="@+id/toIngredientScreenButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toIngredientScreenButton"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
