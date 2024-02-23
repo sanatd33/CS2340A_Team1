@@ -22,9 +22,22 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".views.LoginActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".views.NewAccountActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".views.inputMealActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".views.ShoppingList"
             android:exported="true">
         </activity>
+
     </application>
 
 </manifest>
