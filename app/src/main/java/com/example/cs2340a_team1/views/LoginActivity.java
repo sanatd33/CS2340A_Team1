@@ -91,6 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (snapshot.exists()) {
                             if (password.equals(snapshot.getValue())) {
                                 viewModel.updateData(username);
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
                             } else {
                                 errorText.setText("The username or password is incorrect");
                             }
