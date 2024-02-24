@@ -1,13 +1,10 @@
-package com.example.androidprojecttemplate;
+package com.example.cs2340a_team1.views;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import com.example.cs2340a_team1.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
@@ -20,13 +17,27 @@ public class HomeActivity extends AppCompatActivity {
         Button toIngredientScreenButton = findViewById(R.id.toIngredientScreenButton);
         Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
 
-       /* toInputMealScreenButton = findViewById(R.id.toInputMealScreenButton);
         toInputMealScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, InputMealActivity.class);
+            Intent intent = new Intent(HomeActivity.this, inputMealActivity.class);
             startActivity(intent);
         });
 
-        */
+        toShoppingListScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ShoppingList.class);
+            startActivity(intent);
+        });
+/*
+        toRecipeScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
+            startActivity(intent);
+        });
+
+        toIngredientScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, IngredientActivity.class);
+            startActivity(intent);
+        });
+        
+ */
     }
 
 }

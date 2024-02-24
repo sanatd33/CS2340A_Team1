@@ -37,6 +37,10 @@
             android:name=".views.ShoppingList"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".views.HomeActivity"
+            android:exported="true">
+        </activity>
 
     </application>
 
