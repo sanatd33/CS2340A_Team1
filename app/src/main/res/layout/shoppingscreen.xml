@@ -43,22 +43,23 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
+        android:id="@+id/ToMeal"
         android:layout_width="120dp"
         android:layout_height="47dp"
         android:text="Meal"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/ToRecipe"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/ToRecipe"
         android:layout_width="120dp"
         android:layout_height="47dp"
         android:text="Recipe"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/toIngredient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/toIngredient"
         android:layout_width="120dp"
         android:layout_height="47dp"
         android:text="ingredient"
