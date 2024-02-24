@@ -7,36 +7,36 @@ import com.example.cs2340a_team1.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class RecipeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen);
+        setContentView(R.layout.activity_recipe_screen);
         Button toInputMealScreenButton = findViewById(R.id.toInputMealScreenButton);
-        Button toRecipeScreenButton = findViewById(R.id.toRecipeScreenButton);
+        Button toHomeScreenButton = findViewById(R.id.toRecipeScreenButton);
         Button toIngredientScreenButton = findViewById(R.id.toIngredientScreenButton);
         Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
 
         toInputMealScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, inputMealActivity.class);
+            Intent intent = new Intent(RecipeActivity.this, inputMealActivity.class);
             startActivity(intent);
         });
 
         toShoppingListScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, ShoppingList.class);
-            startActivity(intent);
-        });
-/*
-        toRecipeScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, RecipeActivity.class);
+            Intent intent = new Intent(RecipeActivity.this, ShoppingList.class);
             startActivity(intent);
         });
 
-        toIngredientScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, IngredientActivity.class);
+        toHomeScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(RecipeActivity.this, HomeActivity.class);
             startActivity(intent);
         });
-        
+/*
+        toIngredientScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(RecipeActivity.this, IngredientActivity.class);
+            startActivity(intent);
+        });
+
  */
     }
 
