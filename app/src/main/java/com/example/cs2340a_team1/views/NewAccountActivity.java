@@ -14,9 +14,6 @@ import com.example.cs2340a_team1.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-
 public class NewAccountActivity extends AppCompatActivity {
 
     private EditText usernameText;
@@ -40,9 +37,9 @@ public class NewAccountActivity extends AppCompatActivity {
 
         usernameText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
             @Override
-            public void afterTextChanged(Editable editable) {}
+            public void afterTextChanged(Editable editable) { }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -59,9 +56,9 @@ public class NewAccountActivity extends AppCompatActivity {
 
         passwordText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
             @Override
-            public void afterTextChanged(Editable editable) {}
+            public void afterTextChanged(Editable editable) { }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
