@@ -44,6 +44,4 @@ public class ShoppingList extends AppCompatActivity {
         */
     }
 
-    //code the button to go back to MainActivity
-
 }
