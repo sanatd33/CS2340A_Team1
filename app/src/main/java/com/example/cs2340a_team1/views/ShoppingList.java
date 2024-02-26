@@ -3,7 +3,8 @@ package com.example.cs2340a_team1.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
@@ -12,7 +13,7 @@ import com.example.cs2340a_team1.viewmodels.ShoppingViewModel;
 
 public class ShoppingList extends AppCompatActivity {
     private ShoppingViewModel viewModel;
-    private EditText totalCostText;
+    private TextView totalCostText;
 
 
     @Override
@@ -25,10 +26,11 @@ public class ShoppingList extends AppCompatActivity {
         Button toInputMealScreenButton = findViewById(R.id.ToMeal);
         Button toRecipeScreenButton = findViewById(R.id.ToRecipe);
         Button toIngredientScreenButton = findViewById(R.id.toIngredient);
+        Button toHomeScreenButton = findViewById(R.id.toHomeScreenButton);
 
         // Buttons
         toInputMealScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ShoppingList.this, inputMealActivity.class);
+            Intent intent = new Intent(ShoppingList.this, InputMealActivity.class);
             startActivity(intent);
         });
         toRecipeScreenButton.setOnClickListener(v -> {
@@ -36,8 +38,13 @@ public class ShoppingList extends AppCompatActivity {
             startActivity(intent);
         });
 
-        toRecipeScreenButton.setOnClickListener(v -> {
+        toIngredientScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(ShoppingList.this, IngredientsActivity.class);
+            startActivity(intent);
+        });
+
+        toHomeScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ShoppingList.this, HomeActivity.class);
             startActivity(intent);
         });
     }

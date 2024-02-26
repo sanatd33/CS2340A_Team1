@@ -20,6 +20,7 @@
         android:layout_marginTop="16dp"/>
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="400dp"
         android:layout_height="130dp"
         android:layout_marginTop="510dp"
@@ -87,10 +88,12 @@
         android:id="@+id/navInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginBottom="18dp"
+        android:gravity="center"
         android:text="Please select one of the following features to navigate to"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="512dp" />
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

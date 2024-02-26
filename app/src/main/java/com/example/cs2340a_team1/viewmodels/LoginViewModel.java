@@ -4,7 +4,7 @@ import com.example.cs2340a_team1.model.UserData;
 
 public class LoginViewModel {
     private static LoginViewModel instance;
-    final private UserData userData;
+    private final UserData userData;
 
     public LoginViewModel() {
         userData = new UserData();

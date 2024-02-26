@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordText;
     private Button loginButton;
     private Button newAccountButton;
+    private Button exitButton;
     private TextView errorText;
 
     private String username;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         newAccountButton = findViewById(R.id.new_acct_button);
         errorText = findViewById(R.id.errorText);
+        exitButton = findViewById(R.id.exit);
 
         viewModel = LoginViewModel.getInstance();
 
@@ -109,6 +111,12 @@ public class LoginActivity extends AppCompatActivity {
         newAccountButton.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, NewAccountActivity.class);
             startActivity(intent);
+        });
+
+        exitButton.setOnClickListener(v -> {
+            setResult(RESULT_OK);
+            finish();
+            System.exit(0);
         });
     }
 }

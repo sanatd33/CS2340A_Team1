@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
         android:layout_marginStart="8dp"
-        android:text="Input Meal"
+        android:text="Home"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,19 +46,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/toRecipeScreenButton"
+        android:id="@+id/toInputMealScreenButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
-        android:text="Home"
+        android:text="Input Meal"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/toIngredientScreenButton"
+        android:id="@+id/toRecipeScreenButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingredient"
