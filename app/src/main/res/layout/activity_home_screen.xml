@@ -8,6 +8,21 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/navInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Please select one of the following features to navigate to"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintHeight="1000dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="512dp" />
+
+    <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,14 +98,4 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/navInstructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please select one of the following features to navigate to"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="512dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

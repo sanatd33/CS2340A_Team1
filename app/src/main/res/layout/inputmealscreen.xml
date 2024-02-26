@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="40dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/toRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Recipe"
@@ -22,7 +22,7 @@
         tools:layout_editor_absoluteY="651dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/toIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingredient"
@@ -30,7 +30,7 @@
         tools:layout_editor_absoluteY="651dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/toShopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shopping"
