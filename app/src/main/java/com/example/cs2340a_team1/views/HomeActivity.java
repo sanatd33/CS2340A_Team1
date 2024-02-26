@@ -18,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
         Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
 
         toInputMealScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, inputMealActivity.class);
+            Intent intent = new Intent(HomeActivity.this, InputMealActivity.class);
             startActivity(intent);
         });
 

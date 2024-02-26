@@ -31,7 +31,7 @@
             android:name=".views.NewAccountActivity"
             android:exported="true" />
         <activity
-            android:name=".views.inputMealActivity"
+            android:name=".views.InputMealActivity"
             android:exported="true" />
         <activity
             android:name=".views.ShoppingList"

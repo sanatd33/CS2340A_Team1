@@ -1,5 +1,7 @@
 package com.example.cs2340a_team1.views;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,16 +17,18 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         Button startButton = findViewById(R.id.start);
-        Button exitButton = findViewById(R.id.exit);
 
         startButton.setOnClickListener(v -> {
             Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-        });
-
-        exitButton.setOnClickListener(v -> {
-            finish();
-            System.exit(0);
+            launcher.launch(intent);
         });
     }
+
+    private ActivityResultLauncher<Intent> launcher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), o -> {
+                if (o.getResultCode() == RESULT_OK) {
+                    finish();
+                    System.exit(0);
+                }
+            });
 }

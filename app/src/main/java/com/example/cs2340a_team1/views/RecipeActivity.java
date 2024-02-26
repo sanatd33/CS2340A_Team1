@@ -3,9 +3,10 @@ package com.example.cs2340a_team1.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import com.example.cs2340a_team1.R;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cs2340a_team1.R;
 
 public class RecipeActivity extends AppCompatActivity {
     @Override
@@ -13,12 +14,12 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_screen);
         Button toInputMealScreenButton = findViewById(R.id.toInputMealScreenButton);
-        Button toHomeScreenButton = findViewById(R.id.toRecipeScreenButton);
-        Button toIngredientScreenButton = findViewById(R.id.toIngredientScreenButton);
+        Button toHomeScreenButton = findViewById(R.id.toHomeScreenButton);
+        Button toIngredientScreenButton = findViewById(R.id.toRecipeScreenButton);
         Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
 
         toInputMealScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(RecipeActivity.this, inputMealActivity.class);
+            Intent intent = new Intent(RecipeActivity.this, InputMealActivity.class);
             startActivity(intent);
         });
 
