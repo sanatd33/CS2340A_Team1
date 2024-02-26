@@ -36,12 +36,10 @@ public class ShoppingList extends AppCompatActivity {
             startActivity(intent);
         });
 
-        //when ingredient screen coded uncomment this
-        /*toRecipeScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ShoppingList.this, IngredientActivity.class);
+        toRecipeScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ShoppingList.this, IngredientsActivity.class);
             startActivity(intent);
         });
-        */
     }
 
 }
