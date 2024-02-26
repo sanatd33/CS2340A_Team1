@@ -20,10 +20,10 @@ public class inputMealActivity extends AppCompatActivity {
         Button toIngredientScreenButton = findViewById(R.id.toIngredient);
         Button toShoppingListScreenButton = findViewById(R.id.toShopping);
 
-//        toIngredientScreenButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(inputMealActivity.this, IngredientActivity.class);
-//            startActivity(intent);
-//        });
+        toIngredientScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(inputMealActivity.this, IngredientsActivity.class);
+            startActivity(intent);
+        });
 
         toShoppingListScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(inputMealActivity.this, ShoppingList.class);

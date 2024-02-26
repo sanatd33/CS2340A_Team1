@@ -31,13 +31,10 @@ public class RecipeActivity extends AppCompatActivity {
             Intent intent = new Intent(RecipeActivity.this, HomeActivity.class);
             startActivity(intent);
         });
-/*
         toIngredientScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(RecipeActivity.this, IngredientActivity.class);
+            Intent intent = new Intent(RecipeActivity.this, IngredientsActivity.class);
             startActivity(intent);
         });
-
- */
     }
 
 }
