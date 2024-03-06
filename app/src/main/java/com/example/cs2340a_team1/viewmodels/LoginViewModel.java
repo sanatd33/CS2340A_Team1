@@ -25,4 +25,8 @@ public class LoginViewModel {
     public void updateData(String user) {
         userData.setUser(user);
     }
+
+    public void setMeals(String mealName, int calorieAmt) {
+        userData.addMeal(mealName, calorieAmt);
+    }
 }

@@ -58,4 +58,52 @@
         android:text="Shopping"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/toIngredient" />
+
+    <EditText
+        android:id="@+id/mealNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="187dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Meal Name"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/calorieAmtTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/calorieAmtTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="249dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Calorie Amount"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/submitMeal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/submitMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginBottom="251dp"
+        android:text="Submit Meal"
+        app:layout_constraintBottom_toTopOf="@+id/toIngredient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
