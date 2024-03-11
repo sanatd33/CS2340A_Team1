@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
+import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,7 +24,6 @@ public class NewAccountActivity extends AppCompatActivity {
 
     private String username;
     private String password;
-    private String confirmPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class NewAccountActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.password);
         createAccount = findViewById(R.id.create_acct_button);
         errorText = findViewById(R.id.errorText);
+        errorText.setText("The username/password cannot be empty");
 
         usernameText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -74,10 +75,14 @@ public class NewAccountActivity extends AppCompatActivity {
         });
 
         createAccount.setOnClickListener(v -> {
-            if (errorText.getText().length() == 0) {
+            if (errorText.getText().length() == 0
+                    && username.length() != 0 && password.length() != 0) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference ref = database.getReference(username);
-                ref.setValue(password);
+                UserViewModel viewModel = UserViewModel.getInstance();
+                viewModel.updateUser(username);
+                viewModel.updatePass(password);
+                ref.setValue(viewModel);
                 username = "";
                 password = "";
                 Intent intent = new Intent(NewAccountActivity.this, LoginActivity.class);
