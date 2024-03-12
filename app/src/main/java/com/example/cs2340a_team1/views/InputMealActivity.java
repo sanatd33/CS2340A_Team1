@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
-import com.example.cs2340a_team1.viewmodels.LoginViewModel;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,11 +28,11 @@ public class InputMealActivity extends AppCompatActivity {
         Button toIngredientScreenButton = findViewById(R.id.toIngredient);
         Button toShoppingListScreenButton = findViewById(R.id.toShopping);
         Button toHomeScreenButton = findViewById(R.id.toHomeScreenButton);
+        Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
         Button submitMealButton = findViewById(R.id.submitMeal);
         EditText mealNameText = findViewById(R.id.mealNameTxt);
         EditText calorieAmtText = findViewById(R.id.calorieAmtTxt);
         UserViewModel userViewModel = UserViewModel.getInstance();
-
 
         toIngredientScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(InputMealActivity.this, IngredientsActivity.class);
@@ -50,6 +49,10 @@ public class InputMealActivity extends AppCompatActivity {
         });
         toHomeScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(InputMealActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
+        toPersonalInfoScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(InputMealActivity.this, PersonalInfoActivity.class);
             startActivity(intent);
         });
 

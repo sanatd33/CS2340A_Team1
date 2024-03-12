@@ -35,6 +35,18 @@ public class UserViewModel {
         userData.setPass(pass);
     }
 
+    public void updateHeight(int height) {
+        userData.setHeight(height);
+    }
+
+    public void updateWeight(int weight) {
+        userData.setWeight(weight);
+    }
+
+    public void updateGender(String gender) {
+        userData.setGender(gender);
+    }
+
     public void setMeals(String mealName, int calorieAmt) {
         userData.addMeal(mealName, calorieAmt);
     }

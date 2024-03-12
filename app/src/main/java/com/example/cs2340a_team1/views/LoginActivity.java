@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists() || snapshot.getValue() == null) {
+                        if (snapshot.exists() && snapshot.getValue(UserViewModel.class) != null) {
                             UserData userData = snapshot.getValue(UserViewModel.class)
                                     .getUserData();
                             if (password.equals(userData.getPass())) {
