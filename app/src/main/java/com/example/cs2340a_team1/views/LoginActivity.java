@@ -32,6 +32,12 @@ public class LoginActivity extends AppCompatActivity {
     private String username;
     private String password;
     private UserViewModel viewModel;
+    public String getUsername() {
+        return username;
+    }
+    public String getPassword() {
+        return password;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
