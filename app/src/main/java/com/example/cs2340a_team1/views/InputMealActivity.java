@@ -29,6 +29,7 @@ public class InputMealActivity extends AppCompatActivity {
         Button toShoppingListScreenButton = findViewById(R.id.toShopping);
         Button toHomeScreenButton = findViewById(R.id.toHomeScreenButton);
         Button submitMealButton = findViewById(R.id.submitMeal);
+        Button progressButton = findViewById(R.id.progress);
         EditText mealNameText = findViewById(R.id.mealNameTxt);
         EditText calorieAmtText = findViewById(R.id.calorieAmtTxt);
         LoginViewModel loginViewModel = LoginViewModel.getInstance();
@@ -95,6 +96,10 @@ public class InputMealActivity extends AppCompatActivity {
             ref.setValue(loginViewModel);
             mealName = "";
             calorieAmt = 0;
+        });
+
+        progressButton.setOnClickListener(v -> {
+            //adding graphing modules for data representation soon
         });
     }
 }
