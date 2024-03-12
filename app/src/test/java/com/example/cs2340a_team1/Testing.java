@@ -64,4 +64,34 @@ public class Testing {
         assertEquals(user.getUserData().getMealData("banana").getMealName(), "banana");
         assertEquals(user.getUserData().getMealData("banana").getCalorieAmt(), 40);
     }
+
+    @Test
+    public void personalInfoChecker1() {//detect if inputted personal info is updated correctly in user data
+        UserViewModel user = new UserViewModel();
+        user.updateHeight(180);
+        user.updateWeight(150);
+        user.updateGender("Male");
+        UserData data = user.getUserData();
+        int height = data.getHeight();
+        int weight = data.getWeight();
+        String gender = data.getGender();
+        assertEquals(180, height);
+        assertEquals(150, weight);
+        assertEquals("Male", gender);
+    }
+
+    @Test
+    public void personalInfoChecker2() {//detect if inputted personal info is updated correctly in user data
+        UserViewModel user = new UserViewModel();
+        user.updateHeight(170);
+        user.updateWeight(130);
+        user.updateGender("Female");
+        UserData data = user.getUserData();
+        int height = data.getHeight();
+        int weight = data.getWeight();
+        String gender = data.getGender();
+        assertEquals(170, height);
+        assertEquals(130, weight);
+        assertEquals("Female", gender);
+    }
 }
