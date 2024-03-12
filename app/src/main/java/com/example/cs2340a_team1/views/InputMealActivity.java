@@ -32,8 +32,7 @@ public class InputMealActivity extends AppCompatActivity {
         Button submitMealButton = findViewById(R.id.submitMeal);
         EditText mealNameText = findViewById(R.id.mealNameTxt);
         EditText calorieAmtText = findViewById(R.id.calorieAmtTxt);
-        UserViewModel loginViewModel = UserViewModel.getInstance();
-
+        UserViewModel userViewModel = UserViewModel.getInstance();
 
         toIngredientScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(InputMealActivity.this, IngredientsActivity.class);
@@ -95,9 +94,9 @@ public class InputMealActivity extends AppCompatActivity {
 
         submitMealButton.setOnClickListener(v -> {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference ref = database.getReference(loginViewModel.getUserData().getUser());
-            loginViewModel.setMeals(mealName, calorieAmt);
-            ref.setValue(loginViewModel);
+            DatabaseReference ref = database.getReference(userViewModel.getUserData().getUser());
+            userViewModel.setMeals(mealName, calorieAmt);
+            ref.setValue(userViewModel);
             mealName = "";
             calorieAmt = 0;
         });
