@@ -17,7 +17,9 @@ public class UserData {
     }
 
     public void setUser(String user) {
-        this.user = user;
+        if (isUsernameValid(user)) {
+            this.user = user;
+        }
     }
 
     public void addMeal(String mealName, int calorieAmt) {
@@ -32,9 +34,10 @@ public class UserData {
     }
 
     public void setPass(String pass) {
-        this.pass = pass;
+        if (isPasswordValid(pass)) {
+            this.pass = pass;
+        }
     }
-
     public int getHeight() {
         return height;
     }
@@ -57,6 +60,28 @@ public class UserData {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+    public boolean isUsernameValid(String username) {
+        if (username == null) {
+            return false;
+        }
+        if (username.length() > 0) {
+            if (!username.contains(" ")) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isPasswordValid(String password) {
+        if (password == null) {
+            return false;
+        }
+        if (password.length() > 0) {
+            if (!password.contains(" ")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public MealData getMealData(String mealName) {
