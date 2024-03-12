@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
-import com.example.cs2340a_team1.viewmodels.LoginViewModel;
+import com.example.cs2340a_team1.model.UserData;
+import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private String username;
     private String password;
-    private LoginViewModel viewModel;
+    private UserViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +42,10 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         newAccountButton = findViewById(R.id.new_acct_button);
         errorText = findViewById(R.id.errorText);
+        errorText.setText("The username/password cannot be empty");
         exitButton = findViewById(R.id.exit);
 
-        viewModel = LoginViewModel.getInstance();
+        viewModel = UserViewModel.getInstance();
 
         usernameText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -84,15 +86,18 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginButton.setOnClickListener(v -> {
-            if (errorText.length() == 0) {
+            if (errorText.length() == 0 && username.length() != 0 && password.length() != 0) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference ref = database.getReference(username);
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            if (password.equals(snapshot.getValue())) {
-                                viewModel.updateData(username);
+                        if (snapshot.exists() || snapshot.getValue() == null) {
+                            UserData userData = snapshot.getValue(UserViewModel.class)
+                                    .getUserData();
+                            if (password.equals(userData.getPass())) {
+                                viewModel.updateUser(username);
+                                viewModel.updatePass(password);
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(intent);
                             } else {

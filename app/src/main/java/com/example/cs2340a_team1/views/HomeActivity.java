@@ -16,6 +16,7 @@ public class HomeActivity extends AppCompatActivity {
         Button toRecipeScreenButton = findViewById(R.id.toRecipeScreenButton);
         Button toIngredientScreenButton = findViewById(R.id.toIngredientScreenButton);
         Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
+        Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
 
         toInputMealScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, InputMealActivity.class);
@@ -32,6 +33,10 @@ public class HomeActivity extends AppCompatActivity {
         });
         toIngredientScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, IngredientsActivity.class);
+            startActivity(intent);
+        });
+        toPersonalInfoScreenButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, PersonalInfoActivity.class);
             startActivity(intent);
         });
     }
