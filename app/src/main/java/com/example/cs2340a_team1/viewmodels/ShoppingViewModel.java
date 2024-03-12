@@ -12,9 +12,9 @@ public class ShoppingViewModel {
     public static synchronized ShoppingViewModel getInstance() {
         if (instance == null) {
             instance = new ShoppingViewModel();
+            instance.shoppingData = new ShoppingData();
+            instance.updateCost(0);
         }
-        instance.shoppingData = new ShoppingData();
-        instance.updateCost(0);
         return instance;
     }
 
