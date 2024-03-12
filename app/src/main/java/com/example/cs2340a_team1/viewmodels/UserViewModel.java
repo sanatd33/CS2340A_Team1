@@ -11,10 +11,10 @@ public class UserViewModel {
     public static synchronized UserViewModel getInstance() {
         if (instance == null) {
             instance = new UserViewModel();
-            instance.userData = new UserData();
-            instance.updateUser("");
-            instance.updatePass("");
         }
+        instance.userData = new UserData();
+        instance.updateUser("");
+        instance.updatePass("");
         return instance;
     }
 
