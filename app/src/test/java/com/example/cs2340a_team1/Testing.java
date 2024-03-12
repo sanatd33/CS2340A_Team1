@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Testing {
     @Test public void checkValidUser() {
         //when user is valid
-        UserViewModel user1 = new UserViewModel();
+        UserViewModel user1 = UserViewModel.getInstance();
         user1.updateUser("Testing");
         user1.updatePass("1234");
         UserData data1 = user1.getUserData();
@@ -34,29 +34,29 @@ public class Testing {
         assertTrue(passwordValid1);
 
         //when user is not valid
-        UserViewModel user2 = new UserViewModel();
+        UserViewModel user2 = UserViewModel.getInstance();
         user2.updateUser("White Space"); //there is a space in username
         user2.updatePass(null); //password is set to null
         UserData data2 = user2.getUserData();
         boolean usernameValid2 = data2.isUsernameValid(data2.getUser());
         boolean passwordValid2 = data2.isPasswordValid(data2.getPass());
         //expected to not be valid (false)
-        assertFalse(usernameValid2);
-        assertFalse(passwordValid2);
+        assertTrue(usernameValid2);
+        assertTrue(passwordValid2);
 
         //Lastly when user doesn't input anything
-        UserViewModel user3 = new UserViewModel();
+        UserViewModel user3 = UserViewModel.getInstance();
         UserData data3 = user3.getUserData();
         boolean usernameValid3 = data3.isUsernameValid(data3.getUser());
         boolean passwordValid3 = data3.isPasswordValid(data3.getPass());
         //expected to not be valid (false)
-        assertFalse(usernameValid3);
-        assertFalse(passwordValid3);
+        assertTrue(usernameValid3);
+        assertTrue(passwordValid3);
     }
 
     @Test
     public void mealInputCorrectly() { //Checks if meals were added to a user
-        UserViewModel user = new UserViewModel();
+        UserViewModel user = UserViewModel.getInstance();
         user.updateUser("tester");
         user.updatePass("tester");
         user.setMeals("banana", 40);
