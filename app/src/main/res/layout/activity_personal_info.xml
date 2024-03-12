@@ -126,9 +126,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="404dp"
-        android:text="Enter Gender"
+        android:layout_marginTop="456dp"
+        android:text="Enter Gender (M/F):"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/titleTextView" />
 
@@ -136,8 +135,8 @@
         android:id="@+id/genderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="273dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="320dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -147,10 +146,31 @@
         android:id="@+id/submitChoicesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="348dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="396dp"
         android:text="Submit Personal Info"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="256dp"
+        android:text="Enter Age:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+    <EditText
+        android:id="@+id/ageEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="240dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
