@@ -18,6 +18,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
     private int height = 0;
     private int weight = 0;
     private String gender = "";
+    private int age = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         EditText heightEditText = findViewById(R.id.heightText);
         EditText weightEditText = findViewById(R.id.weightText);
         EditText genderEditText = findViewById(R.id.genderText);
+        EditText ageEditText = findViewById(R.id.ageEditText);
 
         toInputMealScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(PersonalInfoActivity.this, InputMealActivity.class);
@@ -96,6 +98,25 @@ public class PersonalInfoActivity extends AppCompatActivity {
             }
         });
 
+        ageEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() > 0) {
+                    age = Integer.parseInt(charSequence.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         genderEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -105,7 +126,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() > 0) {
-                    gender = charSequence.toString().toLowerCase();
+                    gender = charSequence.toString().toUpperCase();
                 }
             }
 
@@ -120,6 +141,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
             model.updateHeight(height);
             model.updateWeight(weight);
             model.updateGender(gender);
+            model.updateAge(age);
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference(model.getUserData().getUser());
@@ -127,10 +149,12 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
             weight = 0;
             height = 0;
+            age = 0;
             gender = "";
             heightEditText.setText("");
             weightEditText.setText("");
             genderEditText.setText("");
+            ageEditText.setText("");
         });
     }
 }

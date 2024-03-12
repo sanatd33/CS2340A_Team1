@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cs2340a_team1.model.MealData;
 import com.example.cs2340a_team1.model.UserData;
-import com.example.cs2340a_team1.viewmodels.LoginViewModel;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.example.cs2340a_team1.views.LoginActivity;
 import com.google.firebase.database.DatabaseReference;
@@ -66,7 +66,7 @@ public class Testing {
         UserViewModel user = new UserViewModel();
         user.updateUser("tester");
         user.updatePass("tester");
-        user.setMeals("banana", 40);
+        user.setMeals(new MealData("banana", "40"));
         assertEquals(user.getUserData().getMealData("banana").getMealName(), "banana");
         assertEquals(user.getUserData().getMealData("banana").getCalorieAmt(), 40);
     }

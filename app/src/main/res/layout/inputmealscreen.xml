@@ -69,8 +69,9 @@
         android:layout_marginEnd="101dp"
         android:layout_marginBottom="17dp"
         android:ems="10"
+        android:hint="Meal Name"
         android:inputType="text"
-        android:text="Meal Name"
+        android:selectAllOnFocus="true"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/calorieAmtTxt"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +87,8 @@
         android:layout_marginEnd="101dp"
         android:layout_marginBottom="10dp"
         android:ems="10"
+        android:hint="Calorie Amount"
         android:inputType="text"
-        android:text="Calorie Amount"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/submitMeal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,4 +118,25 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toShopping" />
+
+    <TextView
+        android:id="@+id/personalInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="282dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/errorTextEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="1dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="#F44336"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitMeal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

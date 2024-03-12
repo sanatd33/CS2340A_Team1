@@ -1,10 +1,13 @@
 package com.example.cs2340a_team1.viewmodels;
 
+import com.example.cs2340a_team1.model.MealData;
 import com.example.cs2340a_team1.model.UserData;
+
+import java.util.ArrayList;
 
 public class UserViewModel {
     private static UserViewModel instance;
-    private final UserData userData;
+    private UserData userData;
 
     public UserViewModel() {
         userData = new UserData();
@@ -19,12 +22,18 @@ public class UserViewModel {
         return instance;
     }
 
-    public static synchronized void setInstance(UserViewModel model) {
-        instance = model;
-    }
-
     public UserData getUserData() {
         return userData;
+    }
+
+    public void updateData(UserData data) {
+        updateUser(data.getUser());
+        updatePass(data.getPass());
+        updateAge(data.getAge());
+        updateGender(data.getGender());
+        updateWeight(data.getWeight());
+        updateHeight(data.getHeight());
+        updateMeals(data.getMeals());
     }
 
     public void updateUser(String user) {
@@ -39,6 +48,10 @@ public class UserViewModel {
         userData.setHeight(height);
     }
 
+    public void updateAge(int age) {
+        userData.setAge(age);
+    }
+
     public void updateWeight(int weight) {
         userData.setWeight(weight);
     }
@@ -47,7 +60,11 @@ public class UserViewModel {
         userData.setGender(gender);
     }
 
-    public void setMeals(String mealName, int calorieAmt) {
-        userData.addMeal(mealName, calorieAmt);
+    public void setMeals(MealData mealData) {
+        userData.addMeal(mealData);
+    }
+
+    private void updateMeals(ArrayList<MealData> meals) {
+        userData.setMeals(meals);
     }
 }

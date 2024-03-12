@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
+import com.example.cs2340a_team1.model.FirebaseUtil;
 import com.example.cs2340a_team1.model.UserData;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -98,9 +102,8 @@ public class LoginActivity extends AppCompatActivity {
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists() && snapshot.getValue(UserViewModel.class) != null) {
-                            UserData userData = snapshot.getValue(UserViewModel.class)
-                                    .getUserData();
+                        if (snapshot.exists()) {
+                            UserData userData = FirebaseUtil.loadFromFirebase(snapshot);
                             if (password.equals(userData.getPass())) {
                                 viewModel.updateUser(username);
                                 viewModel.updatePass(password);
