@@ -13,6 +13,8 @@ import com.example.cs2340a_team1.model.UserData;
 import com.example.cs2340a_team1.viewmodels.LoginViewModel;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.example.cs2340a_team1.views.LoginActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -57,5 +59,15 @@ public class Testing {
         String password = data.getPass();
         assertEquals("", username);
         assertEquals("", password);
+    }
+
+    @Test
+    public void mealInputCorrectly() { //Checks if meals were added to a user
+        UserViewModel user = new UserViewModel();
+        user.updateUser("tester");
+        user.updatePass("tester");
+        user.setMeals("banana", 40);
+        assertEquals(user.getUserData().getMealData("banana").getMealName(), "banana");
+        assertEquals(user.getUserData().getMealData("banana").getCalorieAmt(), 40);
     }
 }

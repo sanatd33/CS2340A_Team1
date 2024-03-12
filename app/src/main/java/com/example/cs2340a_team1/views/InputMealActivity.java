@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
 import com.example.cs2340a_team1.viewmodels.LoginViewModel;
+import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,7 +32,7 @@ public class InputMealActivity extends AppCompatActivity {
         Button submitMealButton = findViewById(R.id.submitMeal);
         EditText mealNameText = findViewById(R.id.mealNameTxt);
         EditText calorieAmtText = findViewById(R.id.calorieAmtTxt);
-        LoginViewModel loginViewModel = LoginViewModel.getInstance();
+        UserViewModel userViewModel = UserViewModel.getInstance();
 
 
         toIngredientScreenButton.setOnClickListener(v -> {
@@ -90,9 +91,9 @@ public class InputMealActivity extends AppCompatActivity {
 
         submitMealButton.setOnClickListener(v -> {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference ref = database.getReference(loginViewModel.getUserData().getUser());
-            loginViewModel.setMeals(mealName, calorieAmt);
-            ref.setValue(loginViewModel);
+            DatabaseReference ref = database.getReference(userViewModel.getUserData().getUser());
+            userViewModel.setMeals(mealName, calorieAmt);
+            ref.setValue(userViewModel);
             mealName = "";
             calorieAmt = 0;
         });

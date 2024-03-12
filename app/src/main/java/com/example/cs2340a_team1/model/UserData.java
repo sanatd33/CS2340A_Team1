@@ -58,4 +58,14 @@ public class UserData {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public MealData getMealData(String mealName) {
+        for (int i = 0; i < meals.size(); i++) {
+            MealData check = meals.get(i);
+            if (check.getMealName().equals(mealName)) {
+                return check;
+            }
+        }
+        return null;
+    }
 }

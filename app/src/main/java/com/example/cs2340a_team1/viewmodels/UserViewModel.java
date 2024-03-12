@@ -34,4 +34,8 @@ public class UserViewModel {
     public void updatePass(String pass) {
         userData.setPass(pass);
     }
+
+    public void setMeals(String mealName, int calorieAmt) {
+        userData.addMeal(mealName, calorieAmt);
+    }
 }
