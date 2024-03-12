@@ -4,17 +4,16 @@ import com.example.cs2340a_team1.model.UserData;
 
 public class UserViewModel {
     private static UserViewModel instance;
-    private final UserData userData;
+    private UserData userData;
 
-    public UserViewModel() {
-        userData = new UserData();
-        this.updateUser("");
-        this.updatePass("");
-    }
+    private UserViewModel() {}
 
     public static synchronized UserViewModel getInstance() {
         if (instance == null) {
             instance = new UserViewModel();
+            instance.userData = new UserData();
+            instance.updateUser("");
+            instance.updatePass("");
         }
         return instance;
     }
