@@ -48,7 +48,7 @@ public class UserViewModel {
     }
 
     public void updateAge(int age) {
-        if(age > 0) {
+        if (age > 0) {
             userData.setAge(age);
         }
     }
