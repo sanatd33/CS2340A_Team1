@@ -9,7 +9,7 @@ public class UserViewModel {
     private static UserViewModel instance;
     private UserData userData;
 
-    private UserViewModel() {}
+    private UserViewModel() { }
 
     public static synchronized UserViewModel getInstance() {
         if (instance == null) {

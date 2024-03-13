@@ -6,7 +6,7 @@ public class ShoppingViewModel {
     private static ShoppingViewModel instance;
     private ShoppingData shoppingData;
 
-    private ShoppingViewModel() {}
+    private ShoppingViewModel() { }
 
     //On start up sets total cost to 0
     public static synchronized ShoppingViewModel getInstance() {
