@@ -17,7 +17,7 @@ public class MealData {
     public String getMealName() {
         return this.mealName;
     }
-    public void setMealName(String mealName) throws IllegalArgumentException{
+    public void setMealName(String mealName) throws IllegalArgumentException {
         if (mealName == null || mealName.length() == 0) {
             throw new IllegalArgumentException("The meal name cannot be empty");
         }
@@ -27,7 +27,7 @@ public class MealData {
     public int getCalorieAmt() {
         return this.calorieAmt;
     }
-    public void setCalorieAmt(String calorieStr) throws IllegalArgumentException{
+    public void setCalorieAmt(String calorieStr) throws IllegalArgumentException {
         int calorieAmt;
         try {
             calorieAmt = Integer.parseInt(calorieStr);
