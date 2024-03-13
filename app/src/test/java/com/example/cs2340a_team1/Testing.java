@@ -37,30 +37,27 @@ public class Testing {
         UserViewModel user1 = UserViewModel.getInstance();
         user1.updateUser("Testing");
         UserData data1 = user1.getUserData();
-        boolean usernameValid1 = data1.isUsernameValid(data1.getUser());
-        //expected to be valid (true)
-        assertTrue(usernameValid1);
+        assertEquals("Testing", data1.getUser());
     }
 
     @Test
     public void checkUserWhitespace(){
         //when user is not valid
         UserViewModel user2 = UserViewModel.getInstance();
+        user2.updateUser("Testing");
         user2.updateUser("White Space"); //there is a space in username
         UserData data2 = user2.getUserData();
-        boolean usernameValid2 = data2.isUsernameValid(data2.getUser());
-        //expected to not be valid (false)
-        assertFalse(usernameValid2);
+        assertEquals("Testing", data2.getUser());
     }
     @Test
     public void checkUserEmpty(){
         //when user is not valid
         //Lastly when user doesn't input anything
         UserViewModel user3 = UserViewModel.getInstance();
+        user3.updateUser("Testing");
+        user3.updateUser(""); //there is a space in username
         UserData data3 = user3.getUserData();
-        boolean usernameValid3 = data3.isUsernameValid(data3.getUser());
-        //expected to not be valid (false)
-        assertFalse(usernameValid3);
+        assertEquals("Testing", data3.getUser());
     }
 
     @Test
@@ -69,29 +66,26 @@ public class Testing {
         UserViewModel user1 = UserViewModel.getInstance();
         user1.updatePass("1234");
         UserData data1 = user1.getUserData();
-        boolean passwordValid1 = data1.isPasswordValid(data1.getPass());
-        //expected to be valid (true)
-        assertTrue(passwordValid1);
+        assertEquals("1234", data1.getPass());
     }
     @Test
     public void checkNullPass() {
         //when user is not valid
         UserViewModel user2 = UserViewModel.getInstance();
+        user2.updatePass("1234");
         user2.updatePass(null); //password is set to null
         UserData data2 = user2.getUserData();
-        boolean passwordValid2 = data2.isPasswordValid(data2.getPass());
-        //expected to not be valid (false)
-        assertTrue(passwordValid2);
+        assertEquals("1234", data2.getPass());
     }
 
     @Test
-    public void checkPassWhitespace() {
+    public void checkPassEmpty() {
         //Lastly when user doesn't input anything
         UserViewModel user3 = UserViewModel.getInstance();
+        user3.updatePass("1234");
+        user3.updatePass(""); //password is set to null
         UserData data3 = user3.getUserData();
-        boolean passwordValid3 = data3.isPasswordValid(data3.getPass());
-        //expected to not be valid (False)
-        assertFalse(passwordValid3);
+        assertEquals("1234", data3.getPass());
     }
 
     @Test
@@ -140,5 +134,15 @@ public class Testing {
         UserData data = user.getUserData();
         int age = data.getAge();
         assertEquals(17, age);
+    }
+
+    @Test
+    public void validAgeChecker() {//detect if inputted personal info is updated correctly in user data
+        UserViewModel user = UserViewModel.getInstance();
+        user.updateAge(30);
+        user.updateAge(-17);
+        UserData data = user.getUserData();
+        int age = data.getAge();
+        assertEquals(30, age);
     }
 }
