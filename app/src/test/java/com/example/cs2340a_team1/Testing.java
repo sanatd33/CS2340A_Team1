@@ -101,7 +101,7 @@ public class Testing {
 
 
     @Test
-    public void heightChecker() {//detect if inputted personal info is updated correctly in user data
+    public void heightChecker() {//detect if inputted height is updated correctly in user data
         UserViewModel user = UserViewModel.getInstance();
         user.updateHeight(180);
         UserData data = user.getUserData();
@@ -110,7 +110,7 @@ public class Testing {
     }
 
     @Test
-    public void weightChecker() {//detect if inputted personal info is updated correctly in user data
+    public void weightChecker() {//detect if inputted weight is updated correctly in user data
         UserViewModel user = UserViewModel.getInstance();
         user.updateWeight(150);
         UserData data = user.getUserData();
@@ -119,7 +119,7 @@ public class Testing {
     }
 
     @Test
-    public void genderChecker() {//detect if inputted personal info is updated correctly in user data
+    public void genderChecker() {//detect if inputted gender is updated correctly in user data
         UserViewModel user = UserViewModel.getInstance();
         user.updateGender("Male");
         UserData data = user.getUserData();
@@ -128,7 +128,7 @@ public class Testing {
     }
 
     @Test
-    public void ageChecker() {//detect if inputted personal info is updated correctly in user data
+    public void ageChecker() {//detect if inputted age is updated correctly in user data
         UserViewModel user = UserViewModel.getInstance();
         user.updateAge(17);
         UserData data = user.getUserData();
@@ -137,7 +137,7 @@ public class Testing {
     }
 
     @Test
-    public void validAgeChecker() {//detect if inputted personal info is updated correctly in user data
+    public void validAgeChecker() {//detect if valid inputted age is updated correctly in user data
         UserViewModel user = UserViewModel.getInstance();
         user.updateAge(30);
         user.updateAge(-17);
