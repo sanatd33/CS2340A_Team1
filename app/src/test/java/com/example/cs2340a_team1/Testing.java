@@ -4,17 +4,24 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cs2340a_team1.model.FirebaseUtil;
 import com.example.cs2340a_team1.model.MealData;
 import com.example.cs2340a_team1.model.UserData;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
+import com.example.cs2340a_team1.views.HomeActivity;
 import com.example.cs2340a_team1.views.LoginActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -64,4 +71,5 @@ public class Testing {
         assertEquals(user.getUserData().getMealData("banana").getMealName(), "banana");
         assertEquals(user.getUserData().getMealData("banana").getCalorieAmt(), 40);
     }
+
 }
