@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class UserViewModel {
     private static UserViewModel instance;
+
+    //Creator Pattern
+    //UserViewModel closely uses UserData by creating an instance of it
+    //and using that instance in the updateData method
     private UserData userData;
 
     private UserViewModel() { }

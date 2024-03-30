@@ -13,7 +13,10 @@ import com.example.cs2340a_team1.R;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+//Single Responsibility Principle (SRP)
+//PersonalInfoActivity works only to take user input on personal info
+//and update the user model with that info
+//That is the sole responsibility of this class
 public class PersonalInfoActivity extends AppCompatActivity {
     private int height = 0;
     private int weight = 0;
