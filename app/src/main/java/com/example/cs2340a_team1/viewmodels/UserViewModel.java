@@ -7,9 +7,13 @@ import java.util.ArrayList;
 
 public class UserViewModel {
     private static UserViewModel instance;
+
+    //Creator Pattern
+    //UserViewModel closely uses UserData by creating an instance of it
+    //and using that instance in the updateData method
     private UserData userData;
 
-    private UserViewModel() {}
+    private UserViewModel() { }
 
     public static synchronized UserViewModel getInstance() {
         if (instance == null) {
@@ -48,7 +52,9 @@ public class UserViewModel {
     }
 
     public void updateAge(int age) {
-        userData.setAge(age);
+        if (age > 0) {
+            userData.setAge(age);
+        }
     }
 
     public void updateWeight(int weight) {

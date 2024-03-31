@@ -15,6 +15,10 @@ import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+//High Cohesion
+//The variables and objects in this class are highly cohesive
+//They do not work on unrelated tasks
+//The only job of the class is to create an account using the inputted username and password
 public class NewAccountActivity extends AppCompatActivity {
 
     private EditText usernameText;
