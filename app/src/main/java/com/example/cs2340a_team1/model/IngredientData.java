@@ -25,7 +25,7 @@ public class IngredientData {
         this.calories = calories;
     }
     public void setIngredientName(String ingredientName) throws IllegalArgumentException {
-        if (ingredientName == null ||ingredientName.length() == 0) {
+        if (ingredientName == null || ingredientName.length() == 0) {
             throw new IllegalArgumentException("The ingredient name cannot be empty");
         }
         this.ingredientName = ingredientName;

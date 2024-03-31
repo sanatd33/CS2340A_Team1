@@ -10,7 +10,7 @@ public class UserData {
 
     private int height;
     private int weight;
-    private String gender;
+    private String gender = "";
 
     private int age;
 
