@@ -80,83 +80,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toInputMealScreenButton" />
 
-    <TextView
-        android:id="@+id/PromptUser"
-        android:layout_width="290dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="16dp"
-        android:text="Enter Information Below"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <Button
+        android:id="@+id/toFormButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginBottom="364dp"
+        android:text="Add/Remove"
+        app:layout_constraintBottom_toTopOf="@+id/toHomeScreenButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-    <EditText
-        android:id="@+id/IngredientName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="351dp"
+        android:layout_height="316dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Enter Ingredient"
-        android:inputType="text"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/toHomeScreenButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PromptUser" />
-
-    <EditText
-        android:id="@+id/IngredientQuantity"
-        android:layout_width="79dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Quantity"
-        android:inputType="numberPassword"
-        app:layout_constraintEnd_toEndOf="@+id/PromptUser"
-        app:layout_constraintStart_toEndOf="@+id/IngredientName"
-        app:layout_constraintTop_toBottomOf="@+id/PromptUser" />
-
-    <EditText
-        android:id="@+id/Calories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Calories (per serving)"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IngredientName" />
-
-    <EditText
-        android:id="@+id/CalorieQuantity"
-        android:layout_width="86dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Quantity"
-        android:inputType="numberPassword"
-        app:layout_constraintStart_toEndOf="@+id/Calories"
-        app:layout_constraintTop_toBottomOf="@+id/IngredientQuantity" />
-
-    <EditText
-        android:id="@+id/Expiration"
-        android:layout_width="303dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Expiration (mm-dd-yyyy) - optional"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Calories" />
-
-    <Button
-        android:id="@+id/EnterButton"
-        android:layout_width="145dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="27dp"
-        android:text="Enter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Expiration" />
+        app:layout_constraintTop_toBottomOf="@+id/toFormButton"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

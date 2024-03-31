@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#D3D3D3"
+android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Ingredient Form"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<Button
+    android:id="@+id/toHomeScreenButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="56dp"
+    android:layout_marginStart="8dp"
+    android:text="Home"
+    android:textSize="14sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/toInputMealScreenButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="56dp"
+    android:text="Input Meal"
+    android:textSize="14sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/toRecipeScreenButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="56dp"
+    android:text="Recipe"
+    android:textSize="14sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/toShoppingListScreenButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:text="Shopping List"
+    android:textSize="14sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.967"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/toPersonalInfoScreenButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:text="Personal Info"
+    android:textSize="14sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toInputMealScreenButton" />
+
+<TextView
+    android:id="@+id/PromptUser"
+    android:layout_width="290dp"
+    android:layout_height="47dp"
+    android:layout_marginTop="16dp"
+    android:text="Enter Information Below"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+<EditText
+    android:id="@+id/IngredientName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:ems="10"
+    android:hint="Enter Ingredient"
+    android:inputType="text"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/PromptUser" />
+
+<EditText
+    android:id="@+id/IngredientQuantity"
+    android:layout_width="79dp"
+    android:layout_height="45dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:hint="Quantity"
+    android:inputType="numberPassword"
+    app:layout_constraintEnd_toEndOf="@+id/PromptUser"
+    app:layout_constraintStart_toEndOf="@+id/IngredientName"
+    app:layout_constraintTop_toBottomOf="@+id/PromptUser" />
+
+<EditText
+    android:id="@+id/Calories"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:ems="10"
+    android:hint="Calories (per serving)"
+    android:inputType="text"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/IngredientName" />
+
+<EditText
+    android:id="@+id/CalorieQuantity"
+    android:layout_width="86dp"
+    android:layout_height="41dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="32dp"
+    android:ems="10"
+    android:hint="Quantity"
+    android:inputType="numberPassword"
+    app:layout_constraintStart_toEndOf="@+id/Calories"
+    app:layout_constraintTop_toBottomOf="@+id/IngredientQuantity" />
+
+<EditText
+    android:id="@+id/Expiration"
+    android:layout_width="303dp"
+    android:layout_height="47dp"
+    android:layout_marginTop="28dp"
+    android:ems="10"
+    android:hint="Expiration (mm-dd-yyyy) - optional"
+    android:inputType="text"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/Calories" />
+
+<Button
+    android:id="@+id/EnterButton"
+    android:layout_width="145dp"
+    android:layout_height="48dp"
+    android:layout_marginTop="27dp"
+    android:text="Enter"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/Expiration" />
+
+    <Button
+        android:id="@+id/RemoveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="166dp"
+        android:text="Remove"
+        app:layout_constraintBottom_toTopOf="@+id/toInputMealScreenButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/EnterButton"
+        app:layout_constraintTop_toBottomOf="@+id/Expiration" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
