@@ -218,5 +218,32 @@ public class Testing {
     }
 
     // 9
+    @Test
+    public void checkMealName(){
+        MealData data = new MealData();
+        data.setMealName("Pizza");
+        assertEquals(data.getMealName(), "Pizza");
+    }
 
+    // 10
+    @Test
+    public void checkMealCalories(){
+        MealData data = new MealData();
+        data.setCalorieAmt("50");
+        assertEquals(data.getCalorieAmt(), 50);
+    }
+
+    // 11
+    @Test
+    public void checkMealCaloriesInteger(){
+        MealData data = new MealData();
+        assertThrows(IllegalArgumentException.class, ()->data.setCalorieAmt("5.4"));
+    }
+
+    // 12
+    @Test
+    public void checkMealCaloriesNegative(){
+        MealData data = new MealData();
+        assertThrows(IllegalArgumentException.class, ()->data.setCalorieAmt("-54"));
+    }
 }
