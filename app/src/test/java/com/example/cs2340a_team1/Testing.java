@@ -13,8 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cs2340a_team1.model.CookbookData;
 import com.example.cs2340a_team1.model.FirebaseUtil;
+import com.example.cs2340a_team1.model.IngredientData;
 import com.example.cs2340a_team1.model.MealData;
+import com.example.cs2340a_team1.model.RecipeData;
 import com.example.cs2340a_team1.model.UserData;
 import com.example.cs2340a_team1.viewmodels.ShoppingViewModel;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
@@ -145,4 +148,75 @@ public class Testing {
         int age = data.getAge();
         assertEquals(30, age);
     }
+
+    // Sprint 3
+    // 1
+    @Test
+    public void checkIngredientAdded(){
+        RecipeData data = new RecipeData();
+        data.addIngredient("Potato", 3);
+        assertTrue(data.getIngredientSet().contains("Potato"));
+        assertEquals(data.getQuantity("Potato"), (Integer) 3);
+    }
+
+    // 2
+    @Test
+    public void checkIngredientName(){
+        IngredientData data = new IngredientData();
+        data.setIngredientName("Potato");
+        assertEquals(data.getIngredientName(), "Potato");
+    }
+
+    // 3
+    @Test
+    public void checkIngredientNameEmpty(){
+        IngredientData data = new IngredientData();
+        assertThrows(IllegalArgumentException.class, ()->data.setIngredientName(""));
+    }
+
+    // 4
+    @Test
+    public void checkIngredientCalories(){
+        IngredientData data = new IngredientData();
+        data.setCalories("54");
+        assertEquals(data.getCalories(), "54");
+    }
+
+    // 5
+    @Test
+    public void checkIngredientCaloriesInteger(){
+        IngredientData data = new IngredientData();
+        assertThrows(IllegalArgumentException.class, ()->data.setCalories("5.4"));
+    }
+
+    // 6
+    @Test
+    public void checkIngredientCaloriesNegative(){
+        IngredientData data = new IngredientData();
+        assertThrows(IllegalArgumentException.class, ()->data.setCalories("-54"));
+    }
+
+    // 7
+    @Test
+    public void checkCookbookAdd(){
+        CookbookData data = new CookbookData();
+        RecipeData recipe = new RecipeData();
+        recipe.addIngredient("Potato", 4);
+        data.addRecipe(recipe);
+        assertTrue(data.getRecipes().contains(recipe));
+    }
+
+    // 8
+    @Test
+    public void checkCookbookClear(){
+        CookbookData data = new CookbookData();
+        RecipeData recipe = new RecipeData();
+        recipe.addIngredient("Potato", 4);
+        data.addRecipe(recipe);
+        data.clearRecipes();
+        assertTrue(data.getRecipes().isEmpty());
+    }
+
+    // 9
+
 }
