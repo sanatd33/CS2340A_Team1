@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
+import com.example.cs2340a_team1.model.SortAlpha;
+import com.example.cs2340a_team1.model.SortQuant;
+import com.example.cs2340a_team1.model.Sorting;
 import com.example.cs2340a_team1.model.RecipeData;
 import com.example.cs2340a_team1.viewmodels.CookbookViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -69,23 +72,14 @@ public class RecipeActivity extends AppCompatActivity {
         });
 
         sortAlphaButton.setOnClickListener(v -> {
-            Set<String> names = recipes.keySet();
-            names = names.stream().sorted().collect(Collectors.toCollection(LinkedHashSet::new));
-            String list = "";
-            for (String name : names) {
-                list += name + "\t\t-\t\t" + recipes.get(name) + "\n";
-            }
+            Sorting sort = new SortAlpha();
+            String list = sort.sort(recipes.keySet(), recipes);
             recipeList.setText(list);
         });
 
         sortQuantButton.setOnClickListener(v -> {
-            Set<String> names = recipes.keySet();
-            names = names.stream().sorted((o1, o2) -> recipes.get(o1) - recipes.get(o2))
-                    .collect(Collectors.toCollection(LinkedHashSet::new));
-            String list = "";
-            for (String name : names) {
-                list += name + "\t\t-\t\t" + recipes.get(name) + "\n";
-            }
+            Sorting sort = new SortQuant();
+            String list = sort.sort(recipes.keySet(), recipes);
             recipeList.setText(list);
         });
 
@@ -127,5 +121,6 @@ public class RecipeActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }
