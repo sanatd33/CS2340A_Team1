@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class UserData {
     private String user;
     private ArrayList<MealData> meals = new ArrayList<>();
+    private ArrayList<IngredientData> ingredients = new ArrayList<>();
     private String pass;
 
     private int height;
@@ -27,6 +28,7 @@ public class UserData {
     public void addMeal(MealData mealData) {
         meals.add(mealData);
     }
+    public void addIngredient(IngredientData ingredientData) {ingredients.add(ingredientData);}
 
     public String getPass() {
         return pass;
@@ -100,6 +102,15 @@ public class UserData {
         }
         return null;
     }
+    public IngredientData getIngredient(String ingredientName) {
+        for (int i = 0; i < ingredients.size(); i++) {
+            IngredientData check = ingredients.get(i);
+            if(check.getIngredientName().equals(ingredientName)) {
+                return check;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<MealData> getMeals() {
         return meals;
@@ -107,6 +118,12 @@ public class UserData {
 
     public void setMeals(ArrayList<MealData> meals) {
         this.meals = meals;
+    }
+    public ArrayList<IngredientData> getIngredients() {
+        return ingredients;
+    }
+    public void setIngredients(ArrayList<IngredientData> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public double getCalorieGoal() {

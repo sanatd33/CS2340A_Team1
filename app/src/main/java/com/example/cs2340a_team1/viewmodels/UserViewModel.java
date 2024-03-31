@@ -1,5 +1,6 @@
 package com.example.cs2340a_team1.viewmodels;
 
+import com.example.cs2340a_team1.model.IngredientData;
 import com.example.cs2340a_team1.model.MealData;
 import com.example.cs2340a_team1.model.UserData;
 
@@ -37,6 +38,7 @@ public class UserViewModel {
         updateWeight(data.getWeight());
         updateHeight(data.getHeight());
         updateMeals(data.getMeals());
+        updateIngredients(data.getIngredients());
     }
 
     public void updateUser(String user) {
@@ -68,8 +70,15 @@ public class UserViewModel {
     public void setMeals(MealData mealData) {
         userData.addMeal(mealData);
     }
+    public void setIngredient(IngredientData ingredientData) {
+        userData.addIngredient((ingredientData));
+    }
 
     private void updateMeals(ArrayList<MealData> meals) {
         userData.setMeals(meals);
     }
+    private void updateIngredients(ArrayList<IngredientData> ingredient) {
+        userData.setIngredients(ingredient);
+    }
+
 }
