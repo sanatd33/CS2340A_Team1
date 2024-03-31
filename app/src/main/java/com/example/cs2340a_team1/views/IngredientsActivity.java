@@ -21,6 +21,8 @@ public class IngredientsActivity extends AppCompatActivity {
         Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
         Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
 
+        //goal: need to create a button to add and remove ingredients from pantry
+
         toInputMealScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(IngredientsActivity.this, InputMealActivity.class);
             startActivity(intent);
