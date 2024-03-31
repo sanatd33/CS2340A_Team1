@@ -39,5 +39,4 @@ public class MealData {
         }
         this.calorieAmt = calorieAmt;
     }
-
 }
