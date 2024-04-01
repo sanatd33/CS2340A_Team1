@@ -44,6 +44,9 @@ public class FormActivity extends AppCompatActivity {
                         new IngredientData(ingredientName.getText().toString(),
                                 caloriesAmt.getText().toString());
                 user.removeIngredient(ingredientData);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference(user.getUserData().getUser());
+                reference.setValue(user);
                 errorText.setText("");
             } catch (Exception e) {
                 errorText.setText(e.getMessage());
