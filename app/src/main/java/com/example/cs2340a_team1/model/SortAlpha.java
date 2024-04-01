@@ -8,13 +8,9 @@ import java.util.stream.Collectors;
 public class SortAlpha implements Sorting {
     //sort by alpha
     @Override
-    public String sort(Set<String> names, HashMap<String, Integer> recipes) {
-        names = names.stream().sorted((o1, o2) -> recipes.get(o1) - recipes.get(o2))
+    public Set<String> sort(Set<String> names, HashMap<String, Integer> recipes) {
+        names = names.stream().sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
-        String list = "";
-        for (String name : names) {
-            list += name + "\t\t-\t\t" + recipes.get(name) + "\n";
-        }
-        return list;
+        return names;
     }
 }

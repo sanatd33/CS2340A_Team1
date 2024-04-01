@@ -120,7 +120,8 @@ public class IngredientsActivity extends AppCompatActivity {
                             }
                             updateList();
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference(user.getUserData().getUser());
+                            DatabaseReference reference =
+                                    database.getReference(user.getUserData().getUser());
                             reference.setValue(user);
                         });
 
@@ -138,7 +139,8 @@ public class IngredientsActivity extends AppCompatActivity {
                             }
                             updateList();
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference(user.getUserData().getUser());
+                            DatabaseReference reference =
+                                    database.getReference(user.getUserData().getUser());
                             reference.setValue(user);
                         });
 

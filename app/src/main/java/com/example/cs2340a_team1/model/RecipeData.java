@@ -1,13 +1,23 @@
 package com.example.cs2340a_team1.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
-public class RecipeData {
+public class RecipeData implements Serializable {
+    private String name = new String();
     private HashMap<String, Integer> ingredientList;
 
     public RecipeData() {
         ingredientList = new HashMap<>();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addIngredient(String ingredient, Integer quantity) {

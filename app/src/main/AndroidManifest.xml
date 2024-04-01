@@ -51,6 +51,9 @@
         <activity
             android:name=".views.FormActivity"
             android:exported="true" />
+        <activity
+            android:name=".views.DisplayRecipeActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

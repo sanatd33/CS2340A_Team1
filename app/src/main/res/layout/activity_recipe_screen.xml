@@ -93,10 +93,10 @@
 
     <TextView
         android:id="@+id/recipeList"
-        android:layout_width="371dp"
-        android:layout_height="327dp"
+        android:layout_width="192dp"
+        android:layout_height="322dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:hint="Recipes"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,5 +134,31 @@
         android:text="Sort by Recipe Quanitity"
         app:layout_constraintBottom_toTopOf="@+id/newRecipeBtn"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TableLayout
+        android:id="@+id/btnContainer"
+        android:layout_width="190dp"
+        android:layout_height="324dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/recipeList"
+        app:layout_constraintTop_toTopOf="@+id/recipeList">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

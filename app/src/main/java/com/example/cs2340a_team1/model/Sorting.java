@@ -7,5 +7,5 @@ import java.util.Set;
 //LSP shown because superclass objects can be replaced with objects of the subclass
 //Low Coupling shown because the interface is an example of the classes not be highly interconnected
 public interface Sorting {
-    abstract String sort(Set<String> names, HashMap<String, Integer> recipes);
+    abstract Set<String> sort(Set<String> names, HashMap<String, Integer> recipes);
 }

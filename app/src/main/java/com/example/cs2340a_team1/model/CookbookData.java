@@ -13,6 +13,15 @@ public class CookbookData {
         return recipes;
     }
 
+    public RecipeData getRecipe(String name) {
+        for (RecipeData recipeData : recipes) {
+            if (name.equals(recipeData.getName())) {
+                return recipeData;
+            }
+        }
+        return null;
+    }
+
     public void clearRecipes() {
         recipes.clear();
     }
