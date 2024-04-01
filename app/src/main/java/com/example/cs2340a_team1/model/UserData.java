@@ -1,11 +1,14 @@
 package com.example.cs2340a_team1.model;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserData {
     private String user;
     private ArrayList<MealData> meals = new ArrayList<>();
-    private ArrayList<IngredientData> ingredients = new ArrayList<>();
+    private HashMap<String, Pair<IngredientData, Integer>> ingredients = new HashMap<>();
     private String pass;
 
     private int height;
@@ -28,7 +31,28 @@ public class UserData {
     public void addMeal(MealData mealData) {
         meals.add(mealData);
     }
-    public void addIngredient(IngredientData ingredientData) {ingredients.add(ingredientData);}
+    public void addIngredient(IngredientData ingredientData, Integer count) {
+        if (ingredients.containsKey(ingredientData.getIngredientName())) {
+            throw new IllegalArgumentException("The given ingredient already exists");
+        }
+        ingredients.put(ingredientData.getIngredientName(), new Pair<>(ingredientData, count));
+    }
+
+
+    public void updateIngredient(IngredientData ingredientData, Integer count) {
+        if (!ingredients.containsKey(ingredientData.getIngredientName())) {
+            throw new IllegalArgumentException("The given ingredient does not exist");
+        }
+        ingredients.put(ingredientData.getIngredientName(), new Pair<>(ingredientData, count));
+    }
+
+    public void removeIngredient(IngredientData ingredientData) {
+        if (!ingredients.containsKey(ingredientData.getIngredientName())) {
+            throw new IllegalArgumentException("The given ingredient does not exist");
+        }
+        ingredients.remove(ingredientData.getIngredientName());
+    }
+
 
     public String getPass() {
         return pass;
@@ -102,15 +126,6 @@ public class UserData {
         }
         return null;
     }
-    public IngredientData getIngredient(String ingredientName) {
-        for (int i = 0; i < ingredients.size(); i++) {
-            IngredientData check = ingredients.get(i);
-            if(check.getIngredientName().equals(ingredientName)) {
-                return check;
-            }
-        }
-        return null;
-    }
 
     public ArrayList<MealData> getMeals() {
         return meals;
@@ -119,11 +134,15 @@ public class UserData {
     public void setMeals(ArrayList<MealData> meals) {
         this.meals = meals;
     }
-    public ArrayList<IngredientData> getIngredients() {
+    public HashMap<String, Pair<IngredientData, Integer>> getIngredients() {
         return ingredients;
     }
-    public void setIngredients(ArrayList<IngredientData> ingredients) {
+    public void setIngredients(HashMap<String, Pair<IngredientData, Integer>> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public void clearIngredients() {
+        ingredients.clear();
     }
 
     public double getCalorieGoal() {

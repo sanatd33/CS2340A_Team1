@@ -1,19 +1,27 @@
 package com.example.cs2340a_team1.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.cs2340a_team1.model.IngredientData;
-import com.example.cs2340a_team1.model.UserData;
 
 import com.example.cs2340a_team1.R;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class IngredientsActivity extends AppCompatActivity {
     private String mealName;
@@ -21,6 +29,8 @@ public class IngredientsActivity extends AppCompatActivity {
     private TextView errorText;
     private TextView personalInfoText;
     private UserViewModel user = UserViewModel.getInstance();
+
+    private TextView ingredientList;
     //private IngredientData ingredientData = new IngredientData();
 
     @Override
@@ -34,6 +44,7 @@ public class IngredientsActivity extends AppCompatActivity {
         Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
         Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
         Button toFormButton = findViewById(R.id.toFormButton);
+        ingredientList = findViewById(R.id.ingredientList);
 
         //goal: need to create a button to add and remove ingredients from pantry
 
@@ -64,5 +75,89 @@ public class IngredientsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        UserViewModel model = UserViewModel.getInstance();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(user.getUserData().getUser()
+                + "/userData/ingredients");
+        TableLayout btnContainer = findViewById(R.id.ingredientBtnContainer);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    HashMap<String, Object> map = (HashMap<String, Object>) snapshot.getValue();
+                    String list = "";
+                    model.getUserData().clearIngredients();
+                    for (String name : map.keySet()) {
+                        HashMap<String, Object> map2 =
+                                (HashMap<String, Object>) map.get(name);
+
+                        HashMap<String, String> map3 =
+                                (HashMap<String, String>) map2.get("first");
+
+                        IngredientData ing = new IngredientData(map3.get("ingredientName"),
+                                map3.get("calories"));
+                        int count = Math.toIntExact((Long) map2.get("second"));
+                        list += name + "\t\t-\t\t" + count + "\n";
+                        model.setIngredient(ing, count);
+
+                        Button subtract = new Button(getApplicationContext());
+                        subtract.setText("-");
+                        subtract.setOnClickListener(v -> {
+                            int newCount = user.getUserData().getIngredients().
+                                    get(ing.getIngredientName()).second - 1;
+                            user.updateIngredient(ing,
+                                     newCount);
+                            if (newCount <= 0) {
+                                user.removeIngredient(ing);
+                            }
+                            updateList();
+                        });
+
+                        Button add = new Button(getApplicationContext());
+                        add.setText("+");
+                        add.setOnClickListener(v -> {
+                            int newCount = user.getUserData().getIngredients().
+                                    get(ing.getIngredientName()).second + 1;
+                            user.updateIngredient(ing,
+                                    newCount);
+                            if (newCount <= 0) {
+                                user.removeIngredient(ing);
+                            }
+                            updateList();
+                        });
+
+                        TableRow row = new TableRow(getApplicationContext());
+                        row.addView(subtract);
+                        row.addView(add);
+                        btnContainer.addView(row);
+                    }
+                    ingredientList.setText(list);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void updateList() {
+        String list = "";
+        UserViewModel model = UserViewModel.getInstance();
+        HashMap<String, Pair<IngredientData, Integer>> ingredients =
+                model.getUserData().getIngredients();
+        for (String s : ingredients.keySet()) {
+            int count = ingredients.get(s).second;
+            list += s + "\t\t-\t\t" + count + "\n";
+        }
+        ingredientList.setText(list);
     }
 }

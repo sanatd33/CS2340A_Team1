@@ -12,107 +12,78 @@ import com.example.cs2340a_team1.model.IngredientData;
 
 import com.example.cs2340a_team1.R;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FormActivity extends AppCompatActivity {
-    private String mealName;
-    private int calorieAmt;
+
     private TextView errorText;
-    private TextView personalInfoText;
     private UserViewModel user = UserViewModel.getInstance();
-    private IngredientData ingredientData = new IngredientData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ingredient_form_screen);
 
-        Button toInputMealScreenButton = findViewById(R.id.toInputMealScreenButton);
-        Button toHomeScreenButton = findViewById(R.id.toHomeScreenButton);
-        Button toRecipeScreenButton = findViewById(R.id.toRecipeScreenButton);
-        Button toShoppingListScreenButton = findViewById(R.id.toShoppingListScreenButton);
-        Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
         Button enterButton = findViewById(R.id.EnterButton);
         Button removeButton = findViewById(R.id.RemoveButton);
+        Button returnButton = findViewById(R.id.toIngredientsBtn);
+        EditText ingredientName = findViewById(R.id.IngredientName);
+        EditText ingredientQuantity = findViewById(R.id.IngredientQuantity);
+
+        EditText caloriesAmt = findViewById(R.id.Calories);
+
+        EditText expiration = findViewById(R.id.Expiration);
+        errorText = findViewById(R.id.errorTextView);
 
         //goal: need to create a button to add and remove ingredients from pantry
 
-        toInputMealScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FormActivity.this, InputMealActivity.class);
-            startActivity(intent);
+        removeButton.setOnClickListener(v ->  {
+            try {
+                IngredientData ingredientData =
+                        new IngredientData(ingredientName.getText().toString(),
+                                caloriesAmt.getText().toString());
+                user.removeIngredient(ingredientData);
+                errorText.setText("");
+            } catch (Exception e) {
+                errorText.setText(e.getMessage());
+            }
+
+            ingredientName.setText("");
+            ingredientQuantity.setText("");
+            caloriesAmt.setText("");
+            expiration.setText("");
         });
 
-        toShoppingListScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FormActivity.this, ShoppingList.class);
-            startActivity(intent);
-        });
-
-        toHomeScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FormActivity.this, HomeActivity.class);
-            startActivity(intent);
-        });
-        toRecipeScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FormActivity.this, RecipeActivity.class);
-            startActivity(intent);
-        });
-        toPersonalInfoScreenButton.setOnClickListener(v -> {
-            Intent intent = new Intent(FormActivity.this, PersonalInfoActivity.class);
+        returnButton.setOnClickListener(v -> {
+            Intent intent = new Intent(FormActivity.this, IngredientsActivity.class);
             startActivity(intent);
         });
 
         enterButton.setOnClickListener(v -> {
-            EditText ingredientName = findViewById(R.id.IngredientName);
-            EditText ingredientQuantity = findViewById(R.id.IngredientQuantity);
-
-            EditText caloriesAmt = findViewById(R.id.Calories);
-            EditText caloriesQuantity = findViewById(R.id.CalorieQuantity);
-
-            EditText expiration = findViewById(R.id.Expiration);
-            String name = "";
-            String quantity;
-            String calories;
-            String calQuantity;
-            int x;
-
-            if (ingredientName.toString().length() != 0) {
-                name = ingredientName.toString();
-            }
-
             try {
-                x = Integer.parseInt(ingredientQuantity.toString());
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("The ingredient amount has to be an integer");
-            }
-            if (x <= 0) {
-                throw new IllegalArgumentException("The ingredient amount cannot be <= 0");
-            } else {
-                quantity = ingredientQuantity.toString();
-            }
-
-            try {
-                x = Integer.parseInt(caloriesAmt.toString());
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("The calorie has to be an integer");
-            }
-            if (x <= 0) {
-                throw new IllegalArgumentException("The calorie cannot be <= 0");
-            } else {
-                calories = caloriesAmt.toString();
+                IngredientData ingredientData =
+                        new IngredientData(ingredientName.getText().toString(),
+                        caloriesAmt.getText().toString());
+                int count = Integer.parseInt(ingredientQuantity.getText().toString());
+                if (count <= 0) {
+                    throw new IllegalArgumentException("The count needs to be positive");
+                }
+                user.setIngredient(ingredientData, count);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference(user.getUserData().getUser());
+                reference.setValue(user);
+                errorText.setText("");
+            } catch (NumberFormatException n) {
+                errorText.setText("The count must be a number");
+            } catch (Exception e) {
+                errorText.setText(e.getMessage());
             }
 
-            try {
-                x = Integer.parseInt(caloriesQuantity.toString());
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("The calorie amount has to be an integer");
-            }
-            if (x <= 0) {
-                throw new IllegalArgumentException("The calorie amount cannot be <= 0");
-            } else {
-                calQuantity = caloriesQuantity.toString();
-            }
-
-            IngredientData ingredientData1 = new IngredientData(name, calories);
-            user.setIngredient(ingredientData1);
-            user.updateData(user.getUserData());
+            ingredientName.setText("");
+            ingredientQuantity.setText("");
+            caloriesAmt.setText("");
+            expiration.setText("");
         });
 
 

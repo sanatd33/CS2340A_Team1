@@ -1,10 +1,13 @@
 package com.example.cs2340a_team1.viewmodels;
 
+import android.util.Pair;
+
 import com.example.cs2340a_team1.model.IngredientData;
 import com.example.cs2340a_team1.model.MealData;
 import com.example.cs2340a_team1.model.UserData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserViewModel {
     private static UserViewModel instance;
@@ -70,14 +73,22 @@ public class UserViewModel {
     public void setMeals(MealData mealData) {
         userData.addMeal(mealData);
     }
-    public void setIngredient(IngredientData ingredientData) {
-        userData.addIngredient((ingredientData));
+    public void setIngredient(IngredientData ingredientData, Integer count) {
+        userData.addIngredient((ingredientData), count);
+    }
+
+    public void updateIngredient(IngredientData ingredientData, Integer count) {
+        userData.updateIngredient((ingredientData), count);
+    }
+
+    public void removeIngredient(IngredientData ingredientData) {
+        userData.removeIngredient(ingredientData);
     }
 
     private void updateMeals(ArrayList<MealData> meals) {
         userData.setMeals(meals);
     }
-    private void updateIngredients(ArrayList<IngredientData> ingredient) {
+    private void updateIngredients(HashMap<String, Pair<IngredientData, Integer>> ingredient) {
         userData.setIngredients(ingredient);
     }
 
