@@ -3,7 +3,6 @@ package com.example.cs2340a_team1.views;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -16,9 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
-import com.example.cs2340a_team1.model.CookbookData;
 import com.example.cs2340a_team1.model.FirebaseUtil;
 import com.example.cs2340a_team1.model.RecipeData;
+import com.example.cs2340a_team1.model.SortAlpha;
+import com.example.cs2340a_team1.model.SortQuant;
 import com.example.cs2340a_team1.model.UserData;
 import com.example.cs2340a_team1.viewmodels.CookbookViewModel;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
@@ -29,9 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class RecipeActivity extends AppCompatActivity {
     private TextView recipeList;
@@ -83,8 +81,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         sortAlphaButton.setOnClickListener(v -> {
             Set<String> names = recipes.keySet();
-            names = names.stream().sorted()
-                    .collect(Collectors.toCollection(LinkedHashSet::new));
+            names = new SortAlpha().sort(names, recipes);
             recipeList.setText("");
             TableLayout btnContainer = findViewById(R.id.btnContainer);
             btnContainer.removeAllViews();
@@ -93,7 +90,8 @@ public class RecipeActivity extends AppCompatActivity {
                 button.setText("View Recipe");
                 button.setOnClickListener(x -> {
                     Intent intent = new Intent(RecipeActivity.this, DisplayRecipeActivity.class);
-                    intent.putExtra("recipe", CookbookViewModel.getInstance().getData().getRecipe(name));
+                    intent.putExtra("recipe",
+                            CookbookViewModel.getInstance().getData().getRecipe(name));
                     startActivity(intent);
                 });
                 Spannable word =
@@ -114,8 +112,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         sortQuantButton.setOnClickListener(v -> {
             Set<String> names = recipes.keySet();
-            names = names.stream().sorted((o1, o2) -> recipes.get(o1) - recipes.get(o2))
-                    .collect(Collectors.toCollection(LinkedHashSet::new));
+            names = new SortQuant().sort(names, recipes);
             recipeList.setText("");
             TableLayout btnContainer = findViewById(R.id.btnContainer);
             btnContainer.removeAllViews();
@@ -124,7 +121,8 @@ public class RecipeActivity extends AppCompatActivity {
                 button.setText("View Recipe");
                 button.setOnClickListener(x -> {
                     Intent intent = new Intent(RecipeActivity.this, DisplayRecipeActivity.class);
-                    intent.putExtra("recipe", CookbookViewModel.getInstance().getData().getRecipe(name));
+                    intent.putExtra("recipe",
+                            CookbookViewModel.getInstance().getData().getRecipe(name));
                     startActivity(intent);
                 });
                 Spannable word =
@@ -141,8 +139,8 @@ public class RecipeActivity extends AppCompatActivity {
                 recipeList.append(word);
                 btnContainer.addView(button);
             }
-        });
 
+        });
     }
 
     @Override
@@ -186,12 +184,7 @@ public class RecipeActivity extends AppCompatActivity {
                             System.out.println(data.getIngredients().keySet());
                             quant += ingredient.get(ingName);
                             recipe.addIngredient(ingName, Math.toIntExact(ingredient.get(ingName)));
-                            if (data.getIngredients().containsKey(ingName)) {
-//                                if (data.getIngredients().get(ingName).second
-//                                        < recipe.getQuantity(ingName)) {
-//                                    hasIngredients = false;
-//                                }
-                            } else {
+                            if (!data.getIngredients().containsKey(ingName)) {
                                 hasIngredients = false;
                             }
                         }
@@ -202,7 +195,8 @@ public class RecipeActivity extends AppCompatActivity {
                         Button button = new Button(getApplicationContext());
                         button.setText("View Recipe");
                         button.setOnClickListener(v -> {
-                            Intent intent = new Intent(RecipeActivity.this, DisplayRecipeActivity.class);
+                            Intent intent = new Intent(RecipeActivity.this,
+                                    DisplayRecipeActivity.class);
                             intent.putExtra("recipe", recipe);
                             startActivity(intent);
                         });
@@ -230,5 +224,6 @@ public class RecipeActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

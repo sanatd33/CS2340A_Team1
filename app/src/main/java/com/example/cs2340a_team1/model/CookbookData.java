@@ -15,7 +15,7 @@ public class CookbookData {
 
     public RecipeData getRecipe(String name) {
         for (RecipeData recipeData : recipes) {
-            if (name.equals(recipeData.name)) {
+            if (name.equals(recipeData.getName())) {
                 return recipeData;
             }
         }

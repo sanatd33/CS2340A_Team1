@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class RecipeData implements Serializable {
-    String name = new String();
+    private String name = new String();
     private HashMap<String, Integer> ingredientList;
 
     public RecipeData() {
@@ -16,7 +16,7 @@ public class RecipeData implements Serializable {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 

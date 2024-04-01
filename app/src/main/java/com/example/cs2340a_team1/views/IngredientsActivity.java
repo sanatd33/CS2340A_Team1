@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -107,19 +108,6 @@ public class IngredientsActivity extends AppCompatActivity {
                         list += name + "\t\t-\t\t" + count + "\n";
                         model.setIngredient(ing, count);
 
-                        Button subtract = new Button(getApplicationContext());
-                        subtract.setText("-");
-                        subtract.setOnClickListener(v -> {
-                            int newCount = user.getUserData().getIngredients().
-                                    get(ing.getIngredientName()).second - 1;
-                            user.updateIngredient(ing,
-                                     newCount);
-                            if (newCount <= 0) {
-                                user.removeIngredient(ing);
-                            }
-                            updateList();
-                        });
-
                         Button add = new Button(getApplicationContext());
                         add.setText("+");
                         add.setOnClickListener(v -> {
@@ -131,6 +119,29 @@ public class IngredientsActivity extends AppCompatActivity {
                                 user.removeIngredient(ing);
                             }
                             updateList();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference =
+                                    database.getReference(user.getUserData().getUser());
+                            reference.setValue(user);
+                        });
+
+                        Button subtract = new Button(getApplicationContext());
+                        subtract.setText("-");
+                        subtract.setOnClickListener(v -> {
+                            int newCount = user.getUserData().getIngredients().
+                                    get(ing.getIngredientName()).second - 1;
+                            user.updateIngredient(ing,
+                                     newCount);
+                            if (newCount <= 0) {
+                                user.removeIngredient(ing);
+                                subtract.setVisibility(View.INVISIBLE);
+                                add.setVisibility(View.INVISIBLE);
+                            }
+                            updateList();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference =
+                                    database.getReference(user.getUserData().getUser());
+                            reference.setValue(user);
                         });
 
                         TableRow row = new TableRow(getApplicationContext());

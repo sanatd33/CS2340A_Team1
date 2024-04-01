@@ -35,15 +35,16 @@ public class FormActivity extends AppCompatActivity {
 
         EditText expiration = findViewById(R.id.Expiration);
         errorText = findViewById(R.id.errorTextView);
-
-        //goal: need to create a button to add and remove ingredients from pantry
-
+        
         removeButton.setOnClickListener(v ->  {
             try {
                 IngredientData ingredientData =
                         new IngredientData(ingredientName.getText().toString(),
                                 caloriesAmt.getText().toString());
                 user.removeIngredient(ingredientData);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference(user.getUserData().getUser());
+                reference.setValue(user);
                 errorText.setText("");
             } catch (Exception e) {
                 errorText.setText(e.getMessage());
