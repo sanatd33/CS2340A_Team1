@@ -32,7 +32,7 @@ public class NewRecipeActivity extends AppCompatActivity {
         Button addIngredientButton = findViewById(R.id.addIngredientBtn);
         TextView ingredientList = findViewById(R.id.recipeInfo);
 
-        final RecipeData recipe = null;
+        final RecipeData recipe = new RecipeData();
 
         recipeName.addTextChangedListener(new TextWatcher() {
             @Override
