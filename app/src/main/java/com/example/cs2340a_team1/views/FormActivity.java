@@ -35,9 +35,7 @@ public class FormActivity extends AppCompatActivity {
 
         EditText expiration = findViewById(R.id.Expiration);
         errorText = findViewById(R.id.errorTextView);
-
-        //goal: button to add and remove ingredients from pantry
-
+        
         removeButton.setOnClickListener(v ->  {
             try {
                 IngredientData ingredientData =
