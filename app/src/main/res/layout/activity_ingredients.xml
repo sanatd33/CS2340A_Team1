@@ -85,26 +85,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="46dp"
         android:layout_marginEnd="256dp"
-        android:layout_marginBottom="364dp"
+        android:layout_marginBottom="396dp"
         android:text="Add/Remove"
         app:layout_constraintBottom_toTopOf="@+id/toHomeScreenButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:layout_width="351dp"
-        android:layout_height="316dp"
-        android:layout_marginStart="32dp"
+    <TextView
+        android:id="@+id/ingredientList"
+        android:layout_width="178dp"
+        android:layout_height="311dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/toHomeScreenButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Ingredients:"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toFormButton"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/toFormButton" />
+
+    <TableLayout
+        android:id="@+id/ingredientBtnContainer"
+        android:layout_width="193dp"
+        android:layout_height="290dp"
+        android:layout_marginStart="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/ingredientList"
+        app:layout_constraintTop_toTopOf="@+id/ingredientList"></TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
