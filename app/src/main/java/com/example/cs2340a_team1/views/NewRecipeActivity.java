@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ public class NewRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_recipe);
 
         Button cancelButton = findViewById(R.id.cancelBtn);
-        Button submitButton = findViewById(R.id.submitBtn);
+        Button submitButton = findViewById(R.id.returnBtn);
         TextView errorText = findViewById(R.id.errorText);
         EditText ingredientName = findViewById(R.id.ingredientName);
         EditText ingredientQuantity = findViewById(R.id.quanitityText);
@@ -30,7 +32,24 @@ public class NewRecipeActivity extends AppCompatActivity {
         Button addIngredientButton = findViewById(R.id.addIngredientBtn);
         TextView ingredientList = findViewById(R.id.recipeInfo);
 
-        RecipeData recipe = new RecipeData();
+        final RecipeData recipe = null;
+
+        recipeName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                recipe.setName(s.toString());
+            }
+        });
 
         errorText.setText("You cannot have an empty recipe");
 
