@@ -8,11 +8,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
+import com.example.cs2340a_team1.model.UserData;
 import com.example.cs2340a_team1.viewmodels.ShoppingViewModel;
+import com.example.cs2340a_team1.viewmodels.UserViewModel;
 
 
 public class ShoppingList extends AppCompatActivity {
     private ShoppingViewModel viewModel;
+    private UserViewModel userViewModel;
     private TextView totalCostText;
 
 
@@ -21,6 +24,8 @@ public class ShoppingList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shoppingscreen);
         viewModel = ShoppingViewModel.getInstance();
+        userViewModel = UserViewModel.getInstance();
+        viewModel.setUserData(userViewModel.getUserData());
         totalCostText = findViewById(R.id.total_price);
         Button checkOutButton = findViewById(R.id.button_check_out);
         Button toInputMealScreenButton = findViewById(R.id.ToMeal);
