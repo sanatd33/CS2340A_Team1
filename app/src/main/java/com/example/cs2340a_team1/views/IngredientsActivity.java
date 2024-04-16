@@ -160,6 +160,8 @@ public class IngredientsActivity extends AppCompatActivity {
         });
     }
 
+    //Implementation 3 will likely need to be worked on here - delete afterwards
+
     private void updateList() {
         String list = "";
         UserViewModel model = UserViewModel.getInstance();
