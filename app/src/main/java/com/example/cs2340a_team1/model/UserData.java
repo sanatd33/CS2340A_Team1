@@ -9,6 +9,7 @@ public class UserData {
     private String user;
     private ArrayList<MealData> meals = new ArrayList<>();
     private HashMap<String, Pair<IngredientData, Integer>> ingredients = new HashMap<>();
+    private HashMap<String, Integer> shoppingList = new HashMap<>();
     private String pass;
 
     private int height;
@@ -152,5 +153,29 @@ public class UserData {
             return 9.247 * weight + 3.098 * height - 4.330 * age + 447.593;
         }
         return -1;
+    }
+    public void addToShoppingList(String ingredientName, int quantity) {
+        if (shoppingList.containsKey(ingredientName)) {
+            shoppingList.put(ingredientName, shoppingList.get(ingredientName) + quantity);
+        } else {
+            shoppingList.put(ingredientName, quantity);
+        }
+    }
+    public void removeFromShoppingList(String ingredientName, int quantity) {
+        if (shoppingList.containsKey(ingredientName)) {
+            int currentQuantity = shoppingList.get(ingredientName);
+            int newQuantity = currentQuantity - quantity;
+            if (newQuantity <= 0) {
+                shoppingList.remove(ingredientName);
+            } else {
+                shoppingList.put(ingredientName, newQuantity);
+            }
+        }
+    }
+    public HashMap<String, Integer> getShoppingList() {
+        return shoppingList;
+    }
+    public void clearShoppingList() {
+        shoppingList.clear();
     }
 }
