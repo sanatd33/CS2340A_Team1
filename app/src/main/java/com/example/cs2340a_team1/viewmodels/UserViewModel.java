@@ -85,6 +85,18 @@ public class UserViewModel {
         userData.removeIngredient(ingredientData);
     }
 
+    public void setShopping(IngredientData ingredientData, Integer count) {
+        userData.addShopping((ingredientData), count);
+    }
+
+    public void updateShopping(IngredientData ingredientData, Integer count) {
+        userData.updateShopping((ingredientData), count);
+    }
+
+    public void removeShopping(IngredientData ingredientData) {
+        userData.removeShopping(ingredientData);
+    }
+
     private void updateMeals(ArrayList<MealData> meals) {
         userData.setMeals(meals);
     }

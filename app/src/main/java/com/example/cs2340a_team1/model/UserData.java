@@ -9,6 +9,8 @@ public class UserData {
     private String user;
     private ArrayList<MealData> meals = new ArrayList<>();
     private HashMap<String, Pair<IngredientData, Integer>> ingredients = new HashMap<>();
+    private HashMap<String, Pair<IngredientData, Integer>> shopping = new HashMap<>();
+
     private HashMap<String, Integer> shoppingList = new HashMap<>();
     private String pass;
 
@@ -52,6 +54,28 @@ public class UserData {
             throw new IllegalArgumentException("The given ingredient does not exist");
         }
         ingredients.remove(ingredientData.getIngredientName());
+    }
+
+    public void addShopping(IngredientData ingredientData, Integer count) {
+        if (shopping.containsKey(ingredientData.getIngredientName())) {
+            throw new IllegalArgumentException("The given ingredient already exists");
+        }
+        shopping.put(ingredientData.getIngredientName(), new Pair<>(ingredientData, count));
+    }
+
+
+    public void updateShopping(IngredientData ingredientData, Integer count) {
+        if (!shopping.containsKey(ingredientData.getIngredientName())) {
+            throw new IllegalArgumentException("The given ingredient does not exist");
+        }
+        shopping.put(ingredientData.getIngredientName(), new Pair<>(ingredientData, count));
+    }
+
+    public void removeShopping(IngredientData ingredientData) {
+        if (!shopping.containsKey(ingredientData.getIngredientName())) {
+            throw new IllegalArgumentException("The given ingredient does not exist");
+        }
+        shopping.remove(ingredientData.getIngredientName());
     }
 
 
@@ -155,22 +179,19 @@ public class UserData {
         return -1;
     }
     public void addToShoppingList(String ingredientName, int quantity) {
-        if (shoppingList.containsKey(ingredientName)) {
-            shoppingList.put(ingredientName, shoppingList.get(ingredientName) + quantity);
-        } else {
-            shoppingList.put(ingredientName, quantity);
-        }
+        shoppingList.put(ingredientName, quantity);
     }
     public void removeFromShoppingList(String ingredientName, int quantity) {
-        if (shoppingList.containsKey(ingredientName)) {
-            int currentQuantity = shoppingList.get(ingredientName);
-            int newQuantity = currentQuantity - quantity;
-            if (newQuantity <= 0) {
-                shoppingList.remove(ingredientName);
-            } else {
-                shoppingList.put(ingredientName, newQuantity);
-            }
-        }
+//        if (shoppingList.containsKey(ingredientName)) {
+//            int currentQuantity = shoppingList.get(ingredientName);
+//            int newQuantity = currentQuantity - quantity;
+//            if (newQuantity <= 0) {
+//                shoppingList.remove(ingredientName);
+//            } else {
+//                shoppingList.put(ingredientName, newQuantity);
+//            }
+//        }
+        shoppingList.remove(ingredientName);
     }
     public HashMap<String, Integer> getShoppingList() {
         return shoppingList;
