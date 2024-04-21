@@ -13,48 +13,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="636dp"
+        android:layout_marginBottom="628dp"
         android:text="Home"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.993"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/total_price"
-        android:layout_width="334dp"
-        android:layout_height="50dp"
-        android:text="Total Price: 0"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_check_out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="292dp"
+        android:layout_marginEnd="276dp"
         android:text="ShoppingList"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button_check_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="224dp"
-        android:text="Proceed To Checkout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.44" />
 
     <Button
         android:id="@+id/ToMeal"
@@ -90,14 +67,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toHomeScreenButton" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="409dp"
-        android:layout_height="521dp"
+    <TextView
+        android:id="@+id/ingredientList"
+        android:layout_width="178dp"
+        android:layout_height="311dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="268dp"
+        android:text="Ingredients:"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TableLayout
+        android:id="@+id/ingredientBtnContainer"
+        android:layout_width="193dp"
+        android:layout_height="290dp"
+        android:layout_marginStart="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/ingredientList"
+        app:layout_constraintTop_toTopOf="@+id/ingredientList"></TableLayout>
+
+
+    <Button
+        android:id="@+id/toFormButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="264dp"
+        android:text="Add/Remove"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
