@@ -152,7 +152,7 @@ public class Testing {
     // Sprint 3
     // 1
     @Test
-    public void checkIngredientAdded(){
+    public void checkIngredientAdded(){//detect is ingredient is added correctly
         RecipeData data = new RecipeData();
         data.addIngredient("Potato", 3);
         assertTrue(data.getIngredientSet().contains("Potato"));
@@ -161,7 +161,7 @@ public class Testing {
 
     // 2
     @Test
-    public void checkIngredientName(){
+    public void checkIngredientName(){//detect if name of ingredient is updated correctly
         IngredientData data = new IngredientData();
         data.setIngredientName("Potato");
         assertEquals(data.getIngredientName(), "Potato");
@@ -198,7 +198,7 @@ public class Testing {
 
     // 7
     @Test
-    public void checkCookbookAdd(){
+    public void checkCookbookAdd(){//checks if cookbook is added correctly
         CookbookData data = new CookbookData();
         RecipeData recipe = new RecipeData();
         recipe.addIngredient("Potato", 4);
