@@ -248,4 +248,10 @@ public class Testing {
     }
 
     //Sprint 4 Test Cases
+    // 1
+    public void checkGetShoppingList(){
+
+    }
+
+    // 2
 }

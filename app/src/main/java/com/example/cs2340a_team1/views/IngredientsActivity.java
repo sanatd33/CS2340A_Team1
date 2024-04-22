@@ -114,8 +114,7 @@ public class IngredientsActivity extends AppCompatActivity {
                         add.setOnClickListener(v -> {
                             int newCount = user.getUserData().getIngredients().
                                     get(ing.getIngredientName()).second + 1;
-                            user.updateIngredient(ing,
-                                    newCount);
+                            user.updateIngredient(ing, newCount);
                             if (newCount <= 0) {
                                 user.removeIngredient(ing);
                             }
