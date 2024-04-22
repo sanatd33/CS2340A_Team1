@@ -89,10 +89,10 @@ public class RecipeActivity extends AppCompatActivity {
             for (RecipeData recipe : data.getRecipes()) {
                 for (String ingName : recipe.getIngredientSet()) {
                     int quant = recipe.getQuantity(ingName);
-                    if (user.getUserData().getShoppingList().containsKey(ingName)) {
-                        if (user.getUserData().getShoppingList().get(ingName).second < quant) {
+                    if (user.getUserData().getIngredients().containsKey(ingName)) {
+                        if (user.getUserData().getIngredients().get(ingName).second < quant) {
                             user.getUserData().addShopping(new IngredientData(ingName,
-                                    user.getUserData().getShoppingList().get(ingName).first.getCalories()), quant);
+                                    user.getUserData().getIngredients().get(ingName).first.getCalories()), quant);
                         }
                     } else {
                         user.getUserData().addShopping(new IngredientData(ingName, "100"), quant);

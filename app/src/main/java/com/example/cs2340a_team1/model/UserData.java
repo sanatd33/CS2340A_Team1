@@ -40,6 +40,10 @@ public class UserData {
         ingredients.put(ingredientData.getIngredientName(), new Pair<>(ingredientData, count));
     }
 
+    public void addIngredient2(IngredientData ingredientData, Integer count) {
+        ingredients.put(ingredientData.getIngredientName(), new Pair<>(ingredientData, count));
+    }
+
 
     public void updateIngredient(IngredientData ingredientData, Integer count) {
         if (!ingredients.containsKey(ingredientData.getIngredientName())) {
