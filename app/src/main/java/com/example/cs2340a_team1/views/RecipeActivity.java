@@ -18,6 +18,7 @@ import com.example.cs2340a_team1.R;
 import com.example.cs2340a_team1.model.CookbookData;
 import com.example.cs2340a_team1.model.FirebaseUtil;
 import com.example.cs2340a_team1.model.IngredientData;
+import com.example.cs2340a_team1.model.MealData;
 import com.example.cs2340a_team1.model.RecipeData;
 import com.example.cs2340a_team1.model.SortAlpha;
 import com.example.cs2340a_team1.model.SortQuant;
@@ -229,6 +230,25 @@ public class RecipeActivity extends AppCompatActivity {
                             word.setSpan(new ForegroundColorSpan(Color.BLUE), 0, word.length(),
                                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             button.setVisibility(View.VISIBLE);
+                            button.setOnClickListener(v -> {
+                                UserViewModel user = UserViewModel.getInstance();
+                                int totalCal = 0;
+                                for (String ingName : ingredient.keySet()) {
+                                    IngredientData ing = user.getUserData().getIngredients().get(ingName).first;
+                                    int q = user.getUserData().getIngredients().get(ingName).second;
+                                    user.updateIngredient(ing, -q);
+                                    if (user.getUserData().getIngredients().get(ingName).second <= 0) {
+                                        user.removeIngredient(ing);
+                                    }
+                                    totalCal += Integer.parseInt(ing.getCalories());
+                                }
+                                MealData m = new MealData();
+                                m.setCalorieAmt(String.valueOf(totalCal));
+                                m.setMealName(recipe.getName());
+                                user.setMeals(m);
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user.getUserData().getUser());
+                                ref.setValue(user);
+                            });
                         } else {
                             word.setSpan(new ForegroundColorSpan(Color.BLACK), 0, word.length(),
                                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
