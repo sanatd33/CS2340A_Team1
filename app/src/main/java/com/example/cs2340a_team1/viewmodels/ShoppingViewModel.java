@@ -30,28 +30,21 @@ public class ShoppingViewModel {
         this.userData = userData;
     }
 
-    public void addToShoppingList(String ingredientName, int quantity) {
-        if(userData != null) {
-            userData.addToShoppingList(ingredientName, quantity);
-        }
-    }
-
-    public void removeFromShoppingList(String ingredientName, int quantity) {
-        if (userData != null) {
-            userData.removeFromShoppingList(ingredientName, quantity);
-        }
-    }
-
-    public void clearShoppingList() {
-        if (userData != null) {
-            userData.clearShoppingList();
-        }
-    }
-
-    public Map<String, Integer> getShoppingList() {
-        if (userData != null) {
-            return userData.getShoppingList();
-        }
-        return null;
-    }
+//    public void addToShoppingList(String ingredientName, int quantity) {
+//        if(userData != null) {
+//            userData.addToShoppingList(ingredientName, quantity);
+//        }
+//    }
+//
+//    public void removeFromShoppingList(String ingredientName, int quantity) {
+//        if (userData != null) {
+//            userData.removeFromShoppingList(ingredientName, quantity);
+//        }
+//    }
+//
+//    public void clearShoppingList() {
+//        if (userData != null) {
+//            userData.clearShoppingList();
+//        }
+//    }
 }

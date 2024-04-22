@@ -55,6 +55,23 @@ public class FirebaseUtil {
             }
         }
 
+        if (mapActual.containsKey("shoppingList")) {
+            HashMap<String, Object> map4 = (HashMap<String, Object>) mapActual.get("shoppingList");
+            userData.clearShopping();
+            for (String name : map4.keySet()) {
+                HashMap<String, Object> map2 =
+                        (HashMap<String, Object>) map4.get(name);
+
+                HashMap<String, String> map3 =
+                        (HashMap<String, String>) map2.get("first");
+
+                IngredientData ing = new IngredientData(map3.get("ingredientName"),
+                        map3.get("calories"));
+                int count = Math.toIntExact((Long) map2.get("second"));
+                userData.addShopping(ing, count);
+            }
+        }
+
         UserViewModel.getInstance().updateData(userData);
         return userData;
     }

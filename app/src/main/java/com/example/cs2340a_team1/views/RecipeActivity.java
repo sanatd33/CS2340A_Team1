@@ -15,7 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
+import com.example.cs2340a_team1.model.CookbookData;
 import com.example.cs2340a_team1.model.FirebaseUtil;
+import com.example.cs2340a_team1.model.IngredientData;
 import com.example.cs2340a_team1.model.RecipeData;
 import com.example.cs2340a_team1.model.SortAlpha;
 import com.example.cs2340a_team1.model.SortQuant;
@@ -48,6 +50,7 @@ public class RecipeActivity extends AppCompatActivity {
         Button newRecipeButton = findViewById(R.id.newRecipeBtn);
         Button sortAlphaButton = findViewById(R.id.sortAlphaBtn);
         Button sortQuantButton = findViewById(R.id.sortQuantBtn);
+        Button updateButton = findViewById(R.id.updateBtn);
         recipeList = findViewById(R.id.recipeList);
         recipes = new HashMap<>();
         isBlue = new HashMap<>();
@@ -77,6 +80,28 @@ public class RecipeActivity extends AppCompatActivity {
         newRecipeButton.setOnClickListener(v -> {
             Intent intent = new Intent(RecipeActivity.this, NewRecipeActivity.class);
             startActivity(intent);
+        });
+
+        updateButton.setOnClickListener(v -> {
+            CookbookViewModel model = CookbookViewModel.getInstance();
+            CookbookData data = model.getData();
+            UserViewModel user = UserViewModel.getInstance();
+            for (RecipeData recipe : data.getRecipes()) {
+                for (String ingName : recipe.getIngredientSet()) {
+                    int quant = recipe.getQuantity(ingName);
+                    if (user.getUserData().getShoppingList().containsKey(ingName)) {
+                        if (user.getUserData().getShoppingList().get(ingName).second < quant) {
+                            user.getUserData().addShopping(new IngredientData(ingName,
+                                    user.getUserData().getShoppingList().get(ingName).first.getCalories()), quant);
+                        }
+                    } else {
+                        user.getUserData().addShopping(new IngredientData(ingName, "100"), quant);
+                    }
+                }
+            }
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference(user.getUserData().getUser());
+            ref.setValue(user);
         });
 
         sortAlphaButton.setOnClickListener(v -> {
