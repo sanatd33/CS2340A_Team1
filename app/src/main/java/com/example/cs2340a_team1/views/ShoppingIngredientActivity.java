@@ -1,6 +1,5 @@
 package com.example.cs2340a_team1.views;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,16 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.cs2340a_team1.model.FirebaseUtil;
 import com.example.cs2340a_team1.model.IngredientData;
 
 import com.example.cs2340a_team1.R;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class ShoppingIngredientActivity extends AppCompatActivity {
 
@@ -76,7 +71,6 @@ public class ShoppingIngredientActivity extends AppCompatActivity {
                     throw new IllegalArgumentException("The count needs to be positive");
                 }
                 user.setShopping(ingredientData, count);
-//                System.out.println(user.getUserData().getShoppingList());
                 FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                 DatabaseReference ref2 = database1.getReference(user.getUserData().getUser());
                 ref2.setValue(user);

@@ -1,6 +1,6 @@
 package com.example.cs2340a_team1.viewmodels;
 
-import android.util.Pair;
+import androidx.core.util.Pair;
 
 import com.example.cs2340a_team1.model.IngredientData;
 

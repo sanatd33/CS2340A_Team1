@@ -326,7 +326,8 @@ public class Testing {
         UserData user = new UserData();
         IngredientData ingredientData = new IngredientData("Pizza", "500");
         user.addShopping(ingredientData, 1);
-        assertThrows(IllegalArgumentException.class, ()->user.addShopping(ingredientData, 1));
+        user.addShopping(ingredientData, 10);
+        assertTrue(user.getShoppingList().get(ingredientData.getIngredientName()).second == 10);
     }
 
     // 10

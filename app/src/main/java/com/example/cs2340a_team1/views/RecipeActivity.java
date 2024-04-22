@@ -93,7 +93,8 @@ public class RecipeActivity extends AppCompatActivity {
                     if (user.getUserData().getIngredients().containsKey(ingName)) {
                         if (user.getUserData().getIngredients().get(ingName).second < quant) {
                             user.getUserData().addShopping(new IngredientData(ingName,
-                                    user.getUserData().getIngredients().get(ingName).first.getCalories()), quant);
+                                    user.getUserData().getIngredients()
+                                            .get(ingName).first.getCalories()), quant);
                         }
                     } else {
                         user.getUserData().addShopping(new IngredientData(ingName, "100"), quant);
@@ -234,10 +235,12 @@ public class RecipeActivity extends AppCompatActivity {
                                 UserViewModel user = UserViewModel.getInstance();
                                 int totalCal = 0;
                                 for (String ingName : ingredient.keySet()) {
-                                    IngredientData ing = user.getUserData().getIngredients().get(ingName).first;
+                                    IngredientData ing =
+                                            user.getUserData().getIngredients().get(ingName).first;
                                     int q = user.getUserData().getIngredients().get(ingName).second;
                                     user.updateIngredient(ing, -q);
-                                    if (user.getUserData().getIngredients().get(ingName).second <= 0) {
+                                    if (user.getUserData()
+                                            .getIngredients().get(ingName).second <= 0) {
                                         user.removeIngredient(ing);
                                     }
                                     totalCal += Integer.parseInt(ing.getCalories());
@@ -246,7 +249,8 @@ public class RecipeActivity extends AppCompatActivity {
                                 m.setCalorieAmt(String.valueOf(totalCal));
                                 m.setMealName(recipe.getName());
                                 user.setMeals(m);
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user.getUserData().getUser());
+                                DatabaseReference ref = FirebaseDatabase.getInstance()
+                                        .getReference(user.getUserData().getUser());
                                 ref.setValue(user);
                             });
                         } else {

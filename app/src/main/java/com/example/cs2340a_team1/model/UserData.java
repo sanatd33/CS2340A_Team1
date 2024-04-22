@@ -1,6 +1,6 @@
 package com.example.cs2340a_team1.model;
 
-import android.util.Pair;
+import androidx.core.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,9 +60,6 @@ public class UserData {
     }
 
     public void addShopping(IngredientData ingredientData, Integer count) {
-//        if (shopping.containsKey(ingredientData.getIngredientName())) {
-//            throw new IllegalArgumentException("The given ingredient already exists");
-//        }
         shopping.put(ingredientData.getIngredientName(), new Pair<>(ingredientData, count));
     }
 
@@ -81,7 +78,7 @@ public class UserData {
         shopping.remove(ingredientData.getIngredientName());
     }
 
-    public HashMap<String, Pair<IngredientData, Integer>> getShopping(){
+    public HashMap<String, Pair<IngredientData, Integer>> getShopping() {
         return shopping;
     }
 
@@ -189,25 +186,7 @@ public class UserData {
         }
         return -1;
     }
-//    public void addToShoppingList(String ingredientName, int quantity) {
-//        shoppingList.put(ingredientName, quantity);
-//    }
-//    public void removeFromShoppingList(String ingredientName, int quantity) {
-////        if (shoppingList.containsKey(ingredientName)) {
-////            int currentQuantity = shoppingList.get(ingredientName);
-////            int newQuantity = currentQuantity - quantity;
-////            if (newQuantity <= 0) {
-////                shoppingList.remove(ingredientName);
-////            } else {
-////                shoppingList.put(ingredientName, newQuantity);
-////            }
-////        }
-//        shoppingList.remove(ingredientName);
-//    }
     public HashMap<String, Pair<IngredientData, Integer>> getShoppingList() {
         return shopping;
     }
-//    public void clearShoppingList() {
-//        shoppingList.clear();
-//    }
 }
