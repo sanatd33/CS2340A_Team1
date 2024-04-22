@@ -33,6 +33,7 @@ public class IngredientsActivity extends AppCompatActivity {
 
     private TextView ingredientList;
     //private IngredientData ingredientData = new IngredientData();
+    //work on this part
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
