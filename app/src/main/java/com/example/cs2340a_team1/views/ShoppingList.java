@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a_team1.R;
+import com.example.cs2340a_team1.model.FirebaseUtil;
 import com.example.cs2340a_team1.model.IngredientData;
-import com.example.cs2340a_team1.model.UserData;
 import com.example.cs2340a_team1.viewmodels.ShoppingViewModel;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class ShoppingList extends AppCompatActivity {
@@ -31,7 +32,6 @@ public class ShoppingList extends AppCompatActivity {
 
     private UserViewModel user = UserViewModel.getInstance();
     private TextView ingredientList;
-
 
 
 
@@ -46,15 +46,10 @@ public class ShoppingList extends AppCompatActivity {
         Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
         Button toFormButton = findViewById(R.id.toFormButton);
         ingredientList = findViewById(R.id.ingredientList);
-        Button update = findViewById(R.id.update);
 
         // The new code should go here
-        
-        // Buttons
-        update.setOnClickListener(v ->{
-            updateList();
-        });
 
+        // Buttons
         toInputMealScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(ShoppingList.this, InputMealActivity.class);
             startActivity(intent);
@@ -93,32 +88,60 @@ public class ShoppingList extends AppCompatActivity {
         UserViewModel model = UserViewModel.getInstance();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref1 = database.getReference(user.getUserData().getUser());
+
+        ref1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    FirebaseUtil.loadFromFirebase(snapshot);
+                    System.out.println(user.getUserData().getShoppingList());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         DatabaseReference reference = database.getReference(user.getUserData().getUser()
                 + "/userData/shoppingList");
         TableLayout btnContainer = findViewById(R.id.ingredientBtnContainer);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 if (snapshot.exists()) {
                     HashMap<String, Object> map = (HashMap<String, Object>) snapshot.getValue();
                     String list = "";
-                    //model.getUserData().clearIngredients();
+                    model.getUserData().clearIngredients();
                     for (String name : map.keySet()) {
-                        IngredientData ing = new IngredientData(name, "1");
-                        int count = Math.toIntExact((Long) map.get(name));
+                        AtomicBoolean deleted = new AtomicBoolean(false);
+                        HashMap<String, Object> map2 =
+                                (HashMap<String, Object>) map.get(name);
+
+                        HashMap<String, String> map3 =
+                                (HashMap<String, String>) map2.get("first");
+
+                        IngredientData ing = new IngredientData(map3.get("ingredientName"),
+                                map3.get("calories"));
+                        int count = Math.toIntExact((Long) map2.get("second"));
                         list += name + "\t\t-\t\t" + count + "\n";
-                        model.getUserData().addToShoppingList(name, count);
+                        model.setShopping(ing, count);
 
                         Button add = new Button(getApplicationContext());
                         add.setText("+");
                         add.setOnClickListener(v -> {
-                            int newCount = user.getUserData().getShoppingList().get(name) + 1;
-                            user.getUserData().addToShoppingList(ing.getIngredientName(),
+                            int newCount = user.getUserData().getShoppingList().
+                                    get(ing.getIngredientName()).second + 1;
+                            System.out.println("making " + ing.getIngredientName() + ": " +
+                                    user.getUserData().getShoppingList()
+                                            .get(ing.getIngredientName()).second + "->" + newCount);
+                            user.setShopping(ing,
                                     newCount);
                             if (newCount <= 0) {
-                                user.getUserData().removeFromShoppingList(ing.getIngredientName(),
-                                        newCount);
+                                user.removeShopping(ing);
                             }
                             updateList();
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -130,14 +153,18 @@ public class ShoppingList extends AppCompatActivity {
                         Button subtract = new Button(getApplicationContext());
                         subtract.setText("-");
                         subtract.setOnClickListener(v -> {
-                            int newCount = user.getUserData().getShoppingList().get(name) - 1;
-                            user.getUserData().addToShoppingList(ing.getIngredientName(),
+                            int newCount = user.getUserData().getShoppingList().
+                                    get(ing.getIngredientName()).second - 1;
+                            System.out.println("making " + ing.getIngredientName() + ": " +
+                                    user.getUserData().getShoppingList()
+                                            .get(ing.getIngredientName()).second + "->" + newCount);
+                            user.setShopping(ing,
                                     newCount);
                             if (newCount <= 0) {
-                                user.getUserData().removeFromShoppingList(ing.getIngredientName(),
-                                        newCount);
-                                subtract.setVisibility(View.INVISIBLE);
+                                user.removeShopping(ing);
+                                deleted.set(true);
                                 add.setVisibility(View.INVISIBLE);
+                                subtract.setVisibility(View.INVISIBLE);
                             }
                             updateList();
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -146,10 +173,12 @@ public class ShoppingList extends AppCompatActivity {
                             reference.setValue(user);
                         });
 
-                        TableRow row = new TableRow(getApplicationContext());
-                        row.addView(subtract);
-                        row.addView(add);
-                        btnContainer.addView(row);
+                        if (!deleted.get()) {
+                            TableRow row = new TableRow(getApplicationContext());
+                            row.addView(subtract);
+                            row.addView(add);
+                            btnContainer.addView(row);
+                        }
                     }
                     ingredientList.setText(list);
                 }
@@ -167,16 +196,10 @@ public class ShoppingList extends AppCompatActivity {
     private void updateList() {
         String list = "";
         UserViewModel model = UserViewModel.getInstance();
-        HashMap<String, Integer> ingredients1 =
-                model.getUserData().getShoppingList();
         HashMap<String, Pair<IngredientData, Integer>> ingredients =
-                model.getUserData().getIngredients();
+                model.getUserData().getShoppingList();
         for (String s : ingredients.keySet()) {
             int count = ingredients.get(s).second;
-            list += s + "\t\t-\t\t" + count + "\n";
-        }
-        for (String s : ingredients1.keySet()) {
-            int count = ingredients1.get(s);
             list += s + "\t\t-\t\t" + count + "\n";
         }
         ingredientList.setText(list);

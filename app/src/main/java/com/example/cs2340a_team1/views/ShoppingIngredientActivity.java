@@ -25,24 +25,10 @@ public class ShoppingIngredientActivity extends AppCompatActivity {
     private TextView errorText;
     private UserViewModel user = UserViewModel.getInstance();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_ingredient_activity);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(user.getUserData().getUser());
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FirebaseUtil.loadFromFirebase(snapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         Button enterButton = findViewById(R.id.EnterButton);
         Button removeButton = findViewById(R.id.RemoveButton);
@@ -60,7 +46,9 @@ public class ShoppingIngredientActivity extends AppCompatActivity {
                 IngredientData ingredientData =
                         new IngredientData(ingredientName.getText().toString(),
                                 caloriesAmt.getText().toString());
-                user.getUserData().removeFromShoppingList(ingredientData.getIngredientName(), 0);
+                user.removeShopping(ingredientData);
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference(user.getUserData().getUser());
                 reference.setValue(user);
                 errorText.setText("");
             } catch (Exception e) {
@@ -87,7 +75,8 @@ public class ShoppingIngredientActivity extends AppCompatActivity {
                 if (count <= 0) {
                     throw new IllegalArgumentException("The count needs to be positive");
                 }
-                user.getUserData().addToShoppingList(ingredientName.getText().toString(), count);
+                user.setShopping(ingredientData, count);
+//                System.out.println(user.getUserData().getShoppingList());
                 FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                 DatabaseReference ref2 = database1.getReference(user.getUserData().getUser());
                 ref2.setValue(user);
