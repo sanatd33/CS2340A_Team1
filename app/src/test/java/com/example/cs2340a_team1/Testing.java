@@ -249,9 +249,91 @@ public class Testing {
 
     //Sprint 4 Test Cases
     // 1
-    public void checkGetShoppingList(){
-
+    @Test
+    public void checkSetUser(){
+        UserData user = new UserData();
+        user.setUser("Bob");
+        assertEquals(user.getUser(), "Bob");
     }
 
     // 2
+    @Test
+    public void checkAddMeal(){
+        UserData user = new UserData();
+        MealData meal = new MealData();
+        meal.setMealName("Pizza");
+        user.addMeal(meal);
+        assertTrue(user.getMeals().contains(meal));
+    }
+
+    // 3
+    @Test
+    public void checkAddIngredients(){
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        user.addIngredient(ingredientData, 1);
+        assertTrue(user.getIngredients().containsKey("Pizza"));
+    }
+
+    // 4
+    @Test
+    public void checkAddDuplicateIngredients() {
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        user.addIngredient(ingredientData, 1);
+        assertThrows(IllegalArgumentException.class, ()->user.addIngredient(ingredientData, 1));
+    }
+
+    // 5
+    @Test
+    public void checkUpdateFalseIngredients() {
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        assertThrows(IllegalArgumentException.class, ()->user.updateIngredient(ingredientData, 1));
+    }
+
+    // 6
+
+    @Test
+    public void checkRemoveFalseIngredients(){
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        assertThrows(IllegalArgumentException.class, ()->user.removeIngredient(ingredientData));
+    }
+
+    // 7
+    @Test
+    public void checkRemoveIngredients(){
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        user.addIngredient(ingredientData, 5);
+        user.removeIngredient(ingredientData);
+        assertTrue(!user.getIngredients().containsKey("Pizza"));
+    }
+
+    // 8
+    @Test
+    public void checkAddShoppingList(){
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        user.addShopping(ingredientData, 1);
+        assertTrue(user.getShopping().containsKey("Pizza"));
+    }
+
+    // 9
+    @Test
+    public void checkAddDuplicateShoppingList() {
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        user.addShopping(ingredientData, 1);
+        assertThrows(IllegalArgumentException.class, ()->user.addShopping(ingredientData, 1));
+    }
+
+    // 10
+    @Test
+    public void checkUpdateFalseShopping() {
+        UserData user = new UserData();
+        IngredientData ingredientData = new IngredientData("Pizza", "500");
+        assertThrows(IllegalArgumentException.class, ()->user.updateShopping(ingredientData, 1));
+    }
 }
