@@ -208,7 +208,7 @@ public class Testing {
 
     // 8
     @Test
-    public void checkCookbookClear(){
+    public void checkCookbookClear(){//checks clearing functionalist of cookbook
         CookbookData data = new CookbookData();
         RecipeData recipe = new RecipeData();
         recipe.addIngredient("Potato", 4);
@@ -219,7 +219,7 @@ public class Testing {
 
     // 9
     @Test
-    public void checkMealName(){
+    public void checkMealName(){//checks meal name updating
         MealData data = new MealData();
         data.setMealName("Pizza");
         assertEquals(data.getMealName(), "Pizza");
