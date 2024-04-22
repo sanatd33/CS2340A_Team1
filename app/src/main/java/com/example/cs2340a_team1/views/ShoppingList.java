@@ -34,6 +34,7 @@ public class ShoppingList extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +46,15 @@ public class ShoppingList extends AppCompatActivity {
         Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
         Button toFormButton = findViewById(R.id.toFormButton);
         ingredientList = findViewById(R.id.ingredientList);
+        Button update = findViewById(R.id.update);
 
         // The new code should go here
         
         // Buttons
+        update.setOnClickListener(v ->{
+            updateList();
+        });
+
         toInputMealScreenButton.setOnClickListener(v -> {
             Intent intent = new Intent(ShoppingList.this, InputMealActivity.class);
             startActivity(intent);
@@ -93,10 +99,11 @@ public class ShoppingList extends AppCompatActivity {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 if (snapshot.exists()) {
                     HashMap<String, Object> map = (HashMap<String, Object>) snapshot.getValue();
                     String list = "";
-                    model.getUserData().clearIngredients();
+                    //model.getUserData().clearIngredients();
                     for (String name : map.keySet()) {
                         IngredientData ing = new IngredientData(name, "1");
                         int count = Math.toIntExact((Long) map.get(name));
@@ -160,10 +167,12 @@ public class ShoppingList extends AppCompatActivity {
     private void updateList() {
         String list = "";
         UserViewModel model = UserViewModel.getInstance();
-        HashMap<String, Integer> ingredients =
-                model.getUserData().getShoppingList();
+//        HashMap<String, Integer> ingredients =
+//                model.getUserData().getShoppingList();
+        HashMap<String, Pair<IngredientData, Integer>> ingredients =
+                model.getUserData().getIngredients();
         for (String s : ingredients.keySet()) {
-            int count = ingredients.get(s);
+            int count = ingredients.get(s).second;
             list += s + "\t\t-\t\t" + count + "\n";
         }
         ingredientList.setText(list);

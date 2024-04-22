@@ -25,6 +25,7 @@ public class ShoppingIngredientActivity extends AppCompatActivity {
     private TextView errorText;
     private UserViewModel user = UserViewModel.getInstance();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
