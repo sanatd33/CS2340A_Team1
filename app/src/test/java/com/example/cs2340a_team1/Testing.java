@@ -191,7 +191,7 @@ public class Testing {
 
     // 6
     @Test
-    public void checkIngredientCaloriesNegative(){
+    public void checkIngredientCaloriesNegative(){//detects the calories of ingredients when it is negative
         IngredientData data = new IngredientData();
         assertThrows(IllegalArgumentException.class, ()->data.setCalories("-54"));
     }
@@ -208,7 +208,7 @@ public class Testing {
 
     // 8
     @Test
-    public void checkCookbookClear(){
+    public void checkCookbookClear(){//checks the clearing functionality of the cookbook
         CookbookData data = new CookbookData();
         RecipeData recipe = new RecipeData();
         recipe.addIngredient("Potato", 4);
