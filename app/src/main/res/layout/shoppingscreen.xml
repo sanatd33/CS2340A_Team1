@@ -40,8 +40,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:text="Meal"
+        app:layout_constraintBottom_toTopOf="@+id/toPersonalInfoScreenButton"
         app:layout_constraintEnd_toStartOf="@+id/ToRecipe"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/ToRecipe"
@@ -50,8 +52,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:text="Recipe"
-        app:layout_constraintEnd_toStartOf="@+id/toIngredient"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/toHomeScreenButton" />
 
     <Button
         android:id="@+id/toIngredient"
@@ -61,7 +63,7 @@
         android:layout_marginEnd="4dp"
         android:text="ingredient"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toHomeScreenButton" />
 
     <Button
         android:id="@+id/toPersonalInfoScreenButton"
@@ -71,8 +73,8 @@
         android:layout_marginTop="4dp"
         android:text="Personal Info"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toHomeScreenButton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView

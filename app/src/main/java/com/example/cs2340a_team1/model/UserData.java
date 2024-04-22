@@ -77,6 +77,10 @@ public class UserData {
         shopping.remove(ingredientData.getIngredientName());
     }
 
+    public HashMap<String, Pair<IngredientData, Integer>> getShopping(){
+        return shopping;
+    }
+
 
     public String getPass() {
         return pass;
