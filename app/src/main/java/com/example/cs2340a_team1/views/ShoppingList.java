@@ -2,11 +2,10 @@ package com.example.cs2340a_team1.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
+import androidx.core.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -89,12 +88,14 @@ public class ShoppingList extends AppCompatActivity {
         buyButton.setOnClickListener(v -> {
             UserViewModel user = UserViewModel.getInstance();
             for (IngredientData ing : buying) {
-                int count = user.getUserData().getShoppingList().get(ing.getIngredientName()).second;
+                int count =
+                        user.getUserData().getShoppingList().get(ing.getIngredientName()).second;
                 user.removeShopping(ing);
                 user.addIngredient(ing, count);
             }
 
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user.getUserData().getUser());
+            DatabaseReference ref =
+                    FirebaseDatabase.getInstance().getReference(user.getUserData().getUser());
             ref.setValue(user);
 
 
@@ -113,8 +114,8 @@ public class ShoppingList extends AppCompatActivity {
                 add.setOnClickListener(x -> {
                     int newCount = user.getUserData().getShoppingList().
                             get(ing.getIngredientName()).second + 1;
-                    System.out.println("making " + ing.getIngredientName() + ": " +
-                            user.getUserData().getShoppingList()
+                    System.out.println("making " + ing.getIngredientName() + ": "
+                            + user.getUserData().getShoppingList()
                                     .get(ing.getIngredientName()).second + "->" + newCount);
                     user.setShopping(ing,
                             newCount);
@@ -133,8 +134,8 @@ public class ShoppingList extends AppCompatActivity {
                 subtract.setOnClickListener(x -> {
                     int newCount = user.getUserData().getShoppingList().
                             get(ing.getIngredientName()).second - 1;
-                    System.out.println("making " + ing.getIngredientName() + ": " +
-                            user.getUserData().getShoppingList()
+                    System.out.println("making " + ing.getIngredientName() + ": "
+                            + user.getUserData().getShoppingList()
                                     .get(ing.getIngredientName()).second + "->" + newCount);
                     user.setShopping(ing,
                             newCount);
@@ -224,8 +225,8 @@ public class ShoppingList extends AppCompatActivity {
                         add.setOnClickListener(v -> {
                             int newCount = user.getUserData().getShoppingList().
                                     get(ing.getIngredientName()).second + 1;
-                            System.out.println("making " + ing.getIngredientName() + ": " +
-                                    user.getUserData().getShoppingList()
+                            System.out.println("making " + ing.getIngredientName() + ": "
+                                    + user.getUserData().getShoppingList()
                                             .get(ing.getIngredientName()).second + "->" + newCount);
                             user.setShopping(ing,
                                     newCount);
@@ -244,8 +245,8 @@ public class ShoppingList extends AppCompatActivity {
                         subtract.setOnClickListener(v -> {
                             int newCount = user.getUserData().getShoppingList().
                                     get(ing.getIngredientName()).second - 1;
-                            System.out.println("making " + ing.getIngredientName() + ": " +
-                                    user.getUserData().getShoppingList()
+                            System.out.println("making " + ing.getIngredientName() + ": "
+                                    + user.getUserData().getShoppingList()
                                             .get(ing.getIngredientName()).second + "->" + newCount);
                             user.setShopping(ing,
                                     newCount);
