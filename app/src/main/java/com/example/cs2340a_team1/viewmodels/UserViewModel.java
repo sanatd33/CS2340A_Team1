@@ -81,6 +81,10 @@ public class UserViewModel {
         userData.updateIngredient((ingredientData), count);
     }
 
+    public void addIngredient(IngredientData ingredientData, Integer count) {
+        userData.addIngredient2((ingredientData), count);
+    }
+
     public void removeIngredient(IngredientData ingredientData) {
         userData.removeIngredient(ingredientData);
     }

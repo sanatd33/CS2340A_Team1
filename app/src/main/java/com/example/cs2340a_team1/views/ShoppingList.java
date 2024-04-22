@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -32,6 +36,8 @@ public class ShoppingList extends AppCompatActivity {
 
     private UserViewModel user = UserViewModel.getInstance();
     private TextView ingredientList;
+
+    private ArrayList<IngredientData> buying = new ArrayList<>();
 
 
 
@@ -46,6 +52,7 @@ public class ShoppingList extends AppCompatActivity {
         Button toPersonalInfoScreenButton = findViewById(R.id.toPersonalInfoScreenButton);
         Button toFormButton = findViewById(R.id.toFormButton);
         ingredientList = findViewById(R.id.ingredientList);
+        Button buyButton = findViewById(R.id.buyBtn);
 
         // The new code should go here
 
@@ -79,6 +86,87 @@ public class ShoppingList extends AppCompatActivity {
             startActivity(intent);
         });
 
+        buyButton.setOnClickListener(v -> {
+            UserViewModel user = UserViewModel.getInstance();
+            for (IngredientData ing : buying) {
+                int count = user.getUserData().getShoppingList().get(ing.getIngredientName()).second;
+                user.removeShopping(ing);
+                user.addIngredient(ing, count);
+            }
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user.getUserData().getUser());
+            ref.setValue(user);
+
+
+            TableLayout btnContainer = findViewById(R.id.ingredientBtnContainer);
+            LinearLayout checkboxContainer = findViewById(R.id.checkboxContainer);
+            btnContainer.removeAllViews();
+            checkboxContainer.removeAllViews();
+            String list = "";
+            for (String name : user.getUserData().getShoppingList().keySet()) {
+                IngredientData ing = user.getUserData().getShoppingList().get(name).first;
+                int count = user.getUserData().getShoppingList().get(name).second;
+                list += name + "\t\t-\t\t" + count + "\n";
+
+                Button add = new Button(getApplicationContext());
+                add.setText("+");
+                add.setOnClickListener(x -> {
+                    int newCount = user.getUserData().getShoppingList().
+                            get(ing.getIngredientName()).second + 1;
+                    System.out.println("making " + ing.getIngredientName() + ": " +
+                            user.getUserData().getShoppingList()
+                                    .get(ing.getIngredientName()).second + "->" + newCount);
+                    user.setShopping(ing,
+                            newCount);
+                    if (newCount <= 0) {
+                        user.removeShopping(ing);
+                    }
+                    updateList();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference reference =
+                            database.getReference(user.getUserData().getUser());
+                    reference.setValue(user);
+                });
+
+                Button subtract = new Button(getApplicationContext());
+                subtract.setText("-");
+                subtract.setOnClickListener(x -> {
+                    int newCount = user.getUserData().getShoppingList().
+                            get(ing.getIngredientName()).second - 1;
+                    System.out.println("making " + ing.getIngredientName() + ": " +
+                            user.getUserData().getShoppingList()
+                                    .get(ing.getIngredientName()).second + "->" + newCount);
+                    user.setShopping(ing,
+                            newCount);
+                    if (newCount <= 0) {
+                        user.removeShopping(ing);
+                        add.setVisibility(View.INVISIBLE);
+                        subtract.setVisibility(View.INVISIBLE);
+                    }
+                    updateList();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference reference =
+                            database.getReference(user.getUserData().getUser());
+                    reference.setValue(user);
+                });
+
+                TableRow row = new TableRow(getApplicationContext());
+                row.addView(subtract);
+                row.addView(add);
+                btnContainer.addView(row);
+
+                CheckBox box = new CheckBox(getApplicationContext());
+                box.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        buying.add(ing);
+                    }
+                });
+
+                checkboxContainer.addView(box);
+            }
+            ingredientList.setText(list);
+        });
+
     }
 
     @Override
@@ -109,13 +197,14 @@ public class ShoppingList extends AppCompatActivity {
         DatabaseReference reference = database.getReference(user.getUserData().getUser()
                 + "/userData/shoppingList");
         TableLayout btnContainer = findViewById(R.id.ingredientBtnContainer);
+        LinearLayout checkboxContainer = findViewById(R.id.checkboxContainer);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     HashMap<String, Object> map = (HashMap<String, Object>) snapshot.getValue();
                     String list = "";
-                    model.getUserData().clearIngredients();
+                    model.getUserData().clearShopping();
                     for (String name : map.keySet()) {
                         AtomicBoolean deleted = new AtomicBoolean(false);
                         HashMap<String, Object> map2 =
@@ -179,6 +268,15 @@ public class ShoppingList extends AppCompatActivity {
                             row.addView(add);
                             btnContainer.addView(row);
                         }
+
+                        CheckBox box = new CheckBox(getApplicationContext());
+                        box.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                            if (isChecked) {
+                                buying.add(ing);
+                            }
+                        });
+
+                        checkboxContainer.addView(box);
                     }
                     ingredientList.setText(list);
                 }
