@@ -169,14 +169,14 @@ public class Testing {
 
     // 3
     @Test
-    public void checkIngredientNameEmpty(){
+    public void checkIngredientNameEmpty(){//detects if name of ingredient is empty
         IngredientData data = new IngredientData();
         assertThrows(IllegalArgumentException.class, ()->data.setIngredientName(""));
     }
 
     // 4
     @Test
-    public void checkIngredientCalories(){
+    public void checkIngredientCalories(){//detects if the calorie amount of the ingredient is accurate
         IngredientData data = new IngredientData();
         data.setCalories("54");
         assertEquals(data.getCalories(), "54");
