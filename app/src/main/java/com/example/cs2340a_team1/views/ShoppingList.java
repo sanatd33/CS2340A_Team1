@@ -167,12 +167,16 @@ public class ShoppingList extends AppCompatActivity {
     private void updateList() {
         String list = "";
         UserViewModel model = UserViewModel.getInstance();
-//        HashMap<String, Integer> ingredients =
-//                model.getUserData().getShoppingList();
+        HashMap<String, Integer> ingredients1 =
+                model.getUserData().getShoppingList();
         HashMap<String, Pair<IngredientData, Integer>> ingredients =
                 model.getUserData().getIngredients();
         for (String s : ingredients.keySet()) {
             int count = ingredients.get(s).second;
+            list += s + "\t\t-\t\t" + count + "\n";
+        }
+        for (String s : ingredients1.keySet()) {
+            int count = ingredients1.get(s);
             list += s + "\t\t-\t\t" + count + "\n";
         }
         ingredientList.setText(list);
