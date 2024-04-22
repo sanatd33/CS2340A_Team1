@@ -19,6 +19,7 @@ import com.example.cs2340a_team1.R;
 import com.example.cs2340a_team1.model.FirebaseUtil;
 import com.example.cs2340a_team1.model.IngredientData;
 import com.example.cs2340a_team1.viewmodels.ShoppingViewModel;
+import com.example.cs2340a_team1.viewmodels.Update;
 import com.example.cs2340a_team1.viewmodels.UserViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -292,14 +293,7 @@ public class ShoppingList extends AppCompatActivity {
     //Implementation 3 will likely need to be worked on here - delete afterwards
 
     private void updateList() {
-        String list = "";
-        UserViewModel model = UserViewModel.getInstance();
-        HashMap<String, Pair<IngredientData, Integer>> ingredients =
-                model.getUserData().getShoppingList();
-        for (String s : ingredients.keySet()) {
-            int count = ingredients.get(s).second;
-            list += s + "\t\t-\t\t" + count + "\n";
-        }
+        String list = Update.updateList(user.getUserData().getShoppingList());
         ingredientList.setText(list);
     }
 
